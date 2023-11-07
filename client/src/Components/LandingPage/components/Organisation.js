@@ -22,7 +22,7 @@ function OrganisationsList({ title, setTitle, setindex }) {
       console.log(response.data);
       setOrganisations(response.data);
     });
-  });
+  }, []);
 
   function handleActiveOrganisation(id, name) {
     setActiveOrganisation(id);

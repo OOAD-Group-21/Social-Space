@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import "./Organisation.css";
-import Header from "./components/Header";
+import Header from "./../Header/Header";
 import MainArea from "./components/MainArea";
 import { useParams } from "react-router-dom";
 
-function Organisation() {
+function Organisation({ setShowNotiList, showNotiList }) {
   const [organisationName, setOrganisationName] = useState();
   const params = useParams();
 
@@ -14,7 +14,7 @@ function Organisation() {
 
   return (
     <div className="Organisation">
-      <Header />
+      <Header setShowNotiList={setShowNotiList} showNotiList={showNotiList} />
       <MainArea organisationName={organisationName} />
     </div>
   );

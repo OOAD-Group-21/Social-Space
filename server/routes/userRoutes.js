@@ -51,6 +51,8 @@ router.get("/organisation/:organisationName/channel/:channelName", authControlle
 router.get("/globalpost", authController.protect, userController.global); //testing after aryan dm NEED to be merged with organisations function
 
 router.get("/notification", authController.protect, userController.notifications); //done
+router.post("/deleteNotification", authController.protect, userController.deletenotification); //done
+
 router.get("/organisations", authController.protect, userController.organisationList); //done
 router.get("/dm", authController.protect, userController.friendList); //working tested after aryan dm
 

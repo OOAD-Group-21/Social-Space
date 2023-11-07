@@ -1,11 +1,11 @@
 import "./DMs.css";
-import Header from "./components/Header";
+import Header from "./../Header/Header";
 import MainArea from "./components/MainArea";
 
-function DMs() {
+function DMs({ setShowNotiList, showNotiList }) {
   return (
     <div className="App">
-      <Header />
+      <Header showNotiList={showNotiList} setShowNotiList={setShowNotiList} />
       <MainArea />
     </div>
   );

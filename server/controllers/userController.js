@@ -1,6 +1,7 @@
 const User = require("./../models/userModel");
 const Organisation = require("./../models/organisationModel");
 const Channel = require("./../models/channelModel");
+const DM = require("./../models/dmModel");
 
 const filterObj = (obj, notAllowedFields) => {
   const newObj = {};
@@ -209,14 +210,39 @@ exports.JoinOrganisation = async (req, res, next) => {
       return res.status(400).json({ message: "User is already a member of this organization." });
     }
     organization.members.push({ username: user.username, role: role });
-    await organization.save();
     orgArr = req.user.organisations;
     orgArr.push(organization.organisationName);
     orgObj = { organisations: orgArr };
+
+    console.log(organization);
+
+    const generalchannel = await Channel.findOne({
+      organisationName: organization.organisationName,
+      channelName: "General",
+    });
+    const memeberofgeneral = generalchannel.members;
+    memeberofgeneral.push(user.username);
+    let notification = user.notifications;
+    let check = false;
+    for (let i = 0; i < notification.length; i++) {
+      if (notification[i].friendOrOrgName === organization.organisationName) check = true;
+    }
+    if (check) {
+      notification = notification.filter((user) => user.orgCode !== organization.code);
+      const notifobj = { notifications: notification };
+      const done = await User.findByIdAndUpdate(req.user.id, notifobj, {
+        new: true,
+      });
+    }
+
     const updatedUser = await User.findByIdAndUpdate(req.user.id, orgObj, {
       new: true,
     });
-    res.status(200).json({ message: "User joined the organization successfully" });
+
+    await generalchannel.save();
+    await organization.save();
+
+    res.status(200).json({ status: "success", message: "User joined the organization successfully" });
   } catch (error) {
     console.error("Error joining organization:", error);
     return res.status(500).json({ message: "Internal server error" });
@@ -725,7 +751,7 @@ exports.notifications = async (req, res, next) => {
     if (!USER) {
       return res.status(404).json({ message: "User not found" });
     }
-    const notification = await USER.notifications;
+    const notification = USER.notifications;
     res.json(notification);
   } catch (error) {
     console.error(error);
@@ -759,11 +785,11 @@ exports.friendList = async (req, res, next) => {
     const friendlist = USER.friends;
     let data;
     for (let i = 0; i < friendlist.length; i++) {
-      const string1 = req.user.username + "!" + friendlist[i];
-      const string2 = friendlist + "!" + req.user.username;
-      const channel1 = await Channel.findOne({ channelName: string1 });
-      const channel2 = await Channel.findOne({ channelName: string2 });
-      if (channel1.messages | channel2.messages) data.push(frndlist[i]);
+      let dms;
+      if (req.user.username <= friendlist[i]) dms = await DM.find({ user1: req.user.username, user2: friendlist[i] });
+      else dms = await DM.find({ user2: req.user.username, user1: friendlist[i] });
+
+      if (dms.messages != []) data.push(frndlist[i]);
     }
     res.json(data);
   } catch (error) {
@@ -771,6 +797,7 @@ exports.friendList = async (req, res, next) => {
     res.status(500).json({ error: "An error occurred while fetching notifications." });
   }
 };
+
 //send friend request
 exports.sendFriendRequest = async (req, res, next) => {
   const user = await User.findOne({ username: req.body.username });
@@ -805,23 +832,71 @@ exports.addfriend = async (req, res, next) => {
   friendlist2.push(User1.username);
   friend1ob = { friends: friendlist1 };
   friend2ob = { friends: friendlist2 };
-  const updatedUser2 = await User.findByIdAndUpdate(User2.id, friend2ob, {
+
+  let data;
+  if (User1.username < User2.username) {
+    data = {
+      user1: User1.username,
+      user2: User2.username,
+      messages: [],
+    };
+  } else {
+    data = {
+      user1: User2.username,
+      user2: User1.username,
+      messages: [],
+    };
+  }
+  const dm = new DM(data);
+
+  let notification = User2.notifications;
+  notification = notification.filter((user) => user.friendOrOrgName !== req.body.username);
+
+  const notifobj = { notifications: notification };
+
+  await dm.save();
+  await User.findByIdAndUpdate(User2._id, friend2ob, {
     new: true,
   });
-  const updatedUser1 = await User.findByIdAndUpdate(User1.id, friend1ob, {
+  await User.findByIdAndUpdate(User1._id, friend1ob, {
     new: true,
   });
-  const data = {
-    isDM: true,
-    channelName: User1.username + "!" + User2.username,
-    members: [User1.username, User2.username],
-  };
-  const channel = new Channel(data);
-  await channel.save();
+
+  await User.findByIdAndUpdate(req.user.id, notifobj, {
+    new: true,
+  });
+
   return res.status(200).json({
     status: "success",
     message: "friend added",
   });
 };
 
-//remove frnd
+//Delete notification
+exports.deletenotification = async (req, res, next) => {
+  const USER = await User.findOne({ username: req.user.username });
+  if (!USER) {
+    return res.status(404).json({
+      status: "error",
+      message: "User not found",
+    });
+  }
+  let notification = USER.notifications;
+  if (req.body.orgCode === undefined) {
+    notification = notification.filter((user) => user.friendOrOrgName !== req.body.friendOrOrgName);
+  } else {
+    notification = notification.filter(
+      (user) => user.friendOrOrgName !== req.body.friendOrOrgName && user.orgCode !== req.body.orgCode
+    );
+  }
+
+  const notifobj = { notifications: notification };
+
+  const done = await User.findByIdAndUpdate(req.user.id, notifobj, {
+    new: true,
+  });
+  return res.status(200).json({
+    status: "success",
+    message: "notification deleted",
+  });
+};

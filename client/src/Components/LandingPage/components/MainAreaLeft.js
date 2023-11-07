@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "./MainAreaLeft.css";
 import Organisation from "./Organisation";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
-function MainAreaLeft({ title, setTitle, setindex }) {
+function MainAreaLeft({ title, setTitle, setindex, setjoinbox }) {
   return (
     <div className="landingPage__mainAreaLeft">
       <div className="dms-org">
@@ -20,7 +19,9 @@ function MainAreaLeft({ title, setTitle, setindex }) {
         <Link to="/createorganisation">
           <button className="twofixedbuttons">create organization</button>
         </Link>
-        <button className="twofixedbuttons">join organization</button>
+        <button className="twofixedbuttons" onClick={() => setjoinbox((old) => !old)}>
+          join organization
+        </button>
       </div>
     </div>
   );

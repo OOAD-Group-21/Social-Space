@@ -7,18 +7,27 @@ import Organisation from "./Components/Organisation/Organisation";
 import CreateOrganisation from "./Components/CreateOrganisation/CreateOrganisation";
 import CreateChannel from "./Components/CreateChannel/CreateChannel";
 import DMs from "./Components/DMs/DMs";
+import { useState } from "react";
 
 function App() {
+  const [showNotiList, setShowNotiList] = useState(false);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="login" element={<Login />}></Route>
         <Route path="signup" element={<Signup />}></Route>
-        <Route path="home" element={<LandingPage />}></Route>
-        <Route path="organisation/:organisationName" element={<Organisation />}></Route>
+        <Route
+          path="home"
+          element={<LandingPage showNotiList={showNotiList} setShowNotiList={setShowNotiList} />}
+        ></Route>
+        <Route
+          path="organisation/:organisationName"
+          element={<Organisation showNotiList={showNotiList} setShowNotiList={setShowNotiList} />}
+        ></Route>
         <Route path="createorganisation" element={<CreateOrganisation />}></Route>
         <Route path="organisation/:organisationName/createchannel" element={<CreateChannel />}></Route>
-        <Route path="DMs" element={<DMs />}></Route>
+        <Route path="DMs" element={<DMs showNotiList={showNotiList} setShowNotiList={setShowNotiList} />}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -21,35 +21,16 @@ const Notificationdata = [
 ];
 
 function ChatArea({ messageList, currentUser, notiList, setNotiList }) {
-  // const username = currentUser;
   console.log("messageList", messageList);
   return (
     <>
       <div className="notiDropdown">
         <Notificationslist notiList={notiList} setNotiList={setNotiList} />
       </div>
-      {/* <div className="chatArea">
-      <ScrollToBottom className="chatArea">
-      {messageList != []
-        ? messageList.map((message) => {
-            return <Message key={message.id} message={message} isTrue={message.from === currentUser ? true : false} />;
-          })
-        : null}
-      </ScrollToBottom>
-    </div> */}
     </>
   );
 }
 function Notificationslist({ setNotiList, notiList }) {
-  // useEffect(() => {
-  //   axios.get("http://localhost:5000/user/Arushi").then((response) => {
-  //     console.log(response.data);
-  //     setNotiList(response.data.roomId);
-  //     setMessageList(response.data.oldMessages);
-  //     socket.emit("join_room", response.data.roomId);
-  //   });
-  // }, []);
-
   return (
     <ul className={notiList ? "list" : "list2"}>
       {Notificationdata.map((ndobj) => (
