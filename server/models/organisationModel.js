@@ -14,6 +14,7 @@ const memberSchema = new mongoose.Schema({
 const organisationSchema = new mongoose.Schema({
   organisationName: {
     type: String,
+    unique: true,
     required: [true, "Please tell organisation name"],
   },
   members: [memberSchema],

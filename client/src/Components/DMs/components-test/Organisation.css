@@ -44,8 +44,8 @@
 .channelbox {
   height: 40px;
   left: 0;
-  width: 343px;
-  background-color: #F2F2F2;
+  width: 100%;
+  background-color: #f2f2f2;
 }
 .ul {
   list-style: none;
@@ -54,9 +54,16 @@
 }
 
 .selectedChannel {
-  background-color: #91ABDE;
+  background-color: #91abde;
 }
-.box{
+.box {
   height: 300px;
   overflow-y: scroll;
+}
+.box2 {
+  height: 300px;
+  overflow-y: scroll;
+}
+.box2 ::-webkit-scrollbar {
+  display: none;
 }

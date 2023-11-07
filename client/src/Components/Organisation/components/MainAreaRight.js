@@ -34,21 +34,21 @@ function MainAreaRight({ title, organisationData, channelData, username, organis
       ) : (
         <>
           <div className="mainArea__right">
-          <ChatHeader
-            title={title}
-            showMembers={showMembers}
-            setShowMembers={setShowMembers}
-            organisationData={organisationData}
-            channelData={channelData}
-          />
-          <ChatArea messageList={messageList} currentUser={username} />
-          <ChatFooter
-            currentUser={username}
-            socket={socket}
-            room={room}
-            setMessageList={setMessageList}
-            title={title}
-          />
+            <ChatHeader
+              title={title}
+              showMembers={showMembers}
+              setShowMembers={setShowMembers}
+              organisationData={organisationData}
+              channelData={channelData}
+            />
+            <ChatArea messageList={messageList} currentUser={username} />
+            <ChatFooter
+              currentUser={username}
+              socket={socket}
+              room={room}
+              setMessageList={setMessageList}
+              title={title}
+            />
           </div>
         </>
       )}

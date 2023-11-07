@@ -24,7 +24,7 @@ router.post("/sendMessage", authController.protect, dmController.sendMessage);
 router.post("/search", authController.protect, userController.searchUser);
 
 // router.get("/user/:username", authController.protect, dmController.getFriend); // Gets friends old messages
-router.get("/user/:username", dmController.getFriend); // Gets friends old messages
+router.get("/user/:username", authController.protect, dmController.getFriend); // Gets friends old messages
 
 router.get("/users", authController.protect, userController.getUsernames);
 

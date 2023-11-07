@@ -7,12 +7,13 @@ import { IconButton } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Header({ setShowNotiList, showNotiList }) {
   const [query, setQuery] = useState("");
   const [users, setUsers] = useState([]);
   const [notificationData, setNotificationData] = useState([]);
-
+  const navigate = useNavigate();
   const [results, setResults] = useState([]);
 
   useEffect(() => {
@@ -88,10 +89,10 @@ function Header({ setShowNotiList, showNotiList }) {
           <IconButton onClick={() => setShowNotiList(!showNotiList)}>
             <NotificationsIcon className="ico" />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={() => navigate("/updateprofile")}>
             <AccountCircleIcon className="ico drop" />
           </IconButton>
-          <div className="dropdown">
+          {/* <div className="dropdown">
             <div className="item">
               <p>Name</p>
             </div>
@@ -104,7 +105,7 @@ function Header({ setShowNotiList, showNotiList }) {
             <div className="item">
               <p>Change Password</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="notiDropdown" id="dropdownHeaderNoti">

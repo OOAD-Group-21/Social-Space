@@ -1,0 +1,219 @@
+.head {
+  margin-top: 30px;
+  color: #000;
+  font-family: Inter;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.started {
+  color: #000;
+  font-family: Inter;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.upbox {
+  display: flex;
+  height: 600px;
+  border-radius: 50px;
+  background-color: #f2f2f2;
+}
+
+.btn {
+  width: 244px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 27px;
+  background: #0e1952;
+  color: #fff;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 20px;
+}
+.btn:hover {
+  background-color: #4e5dae; /* Green */
+  color: white;
+}
+
+.flx-container {
+  display: flex;
+  justify-content: center;
+}
+.Avatar {
+  margin-top: 10px;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #0e1952;
+}
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.flex-container-row {
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+}
+.flx-container-2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-top {
+  flex: 1;
+}
+
+.button1 {
+  width: 244px;
+  height: 48px;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  border-radius: 27px;
+  background-color: white;
+  color: black;
+  border: 2px solid #0e1952; /* Green */
+}
+.button1:hover {
+  background-color: #4e5dae;
+}
+.decor {
+  border-radius: 50px 50px 0px 0px;
+  background: #0e1952;
+  text-align: center;
+  flex: 0.1;
+}
+.profiletext {
+  color: #fff;
+  font-family: Inter;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 50px;
+}
+.bir-gen {
+  display: flex;
+}
+.birth {
+  flex: 0.5;
+}
+.gen {
+  flex: 0.5;
+}
+.input-field {
+  background-color: white;
+  flex: 0.9;
+  justify-content: space-between;
+}
+.pad {
+  margin: 5px;
+}
+.input {
+  background-color: #91abde;
+  width: 584px;
+  height: 53px;
+  border-radius: 15px;
+  
+}
+.username1 {
+  color: #000;
+  font-family: Inter;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: contents;
+}
+
+body {
+  background-color: #91abde;
+}
+.big__box {
+  border-radius: 50px;
+  width: 860px;
+  height: 600px;
+  background-color: white;
+  margin: 0px 0px 30px 30px;
+  display: flex;
+  flex-direction: column;
+}
+.profile__area {
+  background-color: #0e1952;
+  flex: 0.1;
+  align-items: center;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+.profile__name {
+  color: white;
+  text-align: center;
+  font-size: 24px;
+}
+.input__box {
+  flex: 0;
+  align-items: center;
+}
+.fl {
+  display: flex;
+  padding: 24px;
+}
+.input {
+  border: none;
+  border-radius: 10px;
+  background-color: #91abde;
+  color: rgb(0, 0, 0);
+}
+.username {
+  padding-right: 31px;
+  font-size: 24px;
+}
+.right {
+  flex: 1;
+}
+.email {
+  padding-right: 68px;
+  font-size: 24px;
+}
+.married {
+  padding-right: 57px;
+  font-size: 24px;
+}
+.jobrole {
+  padding-right: 55px;
+  font-size: 24px;
+}
+.bir__gen {
+  display: flex;
+  flex: 1;
+}
+.birth__ {
+  flex: 0.5;
+  padding-right: 18px;
+}
+.gender__ {
+  flex: 0.5;
+  padding-left: 18px;
+}
+.gender {
+  padding-right: 6px;
+  font-size: 24px;
+}
+.birth {
+  padding-right: 31px;
+  white-space: nowrap;
+  font-size: 24px;
+}
+.left {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

@@ -77,19 +77,19 @@ exports.getUsernames = async (req, res, next) => {
 //view profile
 
 exports.viewProfile = async (req, res, next) => {
-  const userobj = (obj, fields) => {
-    const newObject = {};
-    fields.forEach((field) => {
-      if (obj[field]) {
-        newObject[field] = obj[field];
-      }
-    });
-    return newObject;
-  };
+  // const userobj = (obj, fields) => {
+  //   const newObject = {};
+  //   fields.forEach((field) => {
+  //     if (obj[field]) {
+  //       newObject[field] = obj[field];
+  //     }
+  //   });
+  //   return newObject;
+  // };
 
-  const fields = ["username", "email", "name", "photo", "dateofbirth", "workingstatus", "gender"];
-  const userProfile = userobj(req.user, fields);
-  res.json(userProfile);
+  // const fields = ["username", "email", "name", "photo", "dateofbirth", "workingstatus", "gender"];
+  // const userProfile = userobj(req.user, fields);
+  res.json({ data: req.user });
 };
 
 //create organisation
@@ -783,13 +783,17 @@ exports.friendList = async (req, res, next) => {
     }
 
     const friendlist = USER.friends;
-    let data;
+    let data = [];
     for (let i = 0; i < friendlist.length; i++) {
       let dms;
-      if (req.user.username <= friendlist[i]) dms = await DM.find({ user1: req.user.username, user2: friendlist[i] });
-      else dms = await DM.find({ user2: req.user.username, user1: friendlist[i] });
+      if (req.user.username <= friendlist[i])
+        dms = (await DM.find({ user1: req.user.username, user2: friendlist[i] }))[0];
+      else dms = (await DM.find({ user2: req.user.username, user1: friendlist[i] }))[0];
 
-      if (dms.messages != []) data.push(frndlist[i]);
+      if (dms.messages != [] && dms.messages.length !== 0) {
+        // console.log(dms.messages.length);
+        data.push(friendlist[i]);
+      }
     }
     res.json(data);
   } catch (error) {

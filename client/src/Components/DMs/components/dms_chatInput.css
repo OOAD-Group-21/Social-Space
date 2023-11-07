@@ -1,0 +1,12 @@
+.dms_chatInput {
+  display: flex;
+  height: 10vh;
+  border-top: 2px solid #f2f2f2;
+}
+.dms__chatInput {
+  border: none;
+  flex: 1;
+  height: 100%;
+  outline-width: 0;
+  padding-left: 6vh;
+}

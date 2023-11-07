@@ -39,14 +39,7 @@ exports.sendMessage = async (req, res, next) => {
 exports.getFriend = async (req, res, next) => {
   const friendUsername = req.params.username;
 
-  req.user = {
-    username: "Aryan",
-  };
   let user1, user2;
-
-  if (friendUsername === "Aryan") {
-    req.user.username = "Arushi";
-  }
 
   if (friendUsername > req.user.username) {
     user1 = req.user.username;
@@ -60,10 +53,12 @@ exports.getFriend = async (req, res, next) => {
   console.log("user2 :", user2);
   const dm = (await Dm.find({ user1, user2 }))[0];
 
+  console.log(dm);
+
   res.status(200).json({
     status: "success",
     oldMessages: dm.messages,
-    currentUser: friendUsername === "Aryan" ? "Arushi" : "Aryan",
+    currentUser: req.user.username,
     roomId: dm._id,
   });
   next();

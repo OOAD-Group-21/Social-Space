@@ -1,0 +1,8 @@
+.Dm__chat {
+  height: 10vh;
+  display: flex;
+  border-bottom: 1px solid gray;
+}
+.Dm__chat > h3 {
+  margin: 23px 0px;
+}

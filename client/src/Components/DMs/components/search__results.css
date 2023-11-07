@@ -1,0 +1,26 @@
+.search__results {
+  z-index: 1;
+  position: relative;
+  background-color: beige;
+  max-height: 36vh;
+  overflow-y: scroll;
+}
+.search__results::-webkit-scrollbar {
+  display: none;
+}
+.search__results__listUL {
+  list-style-type: none;
+  margin-top: 0px;
+}
+.ULresult__item {
+  display: flex;
+  background-color: antiquewhite;
+  border-radius: 15px;
+  border: 1px solid #cdcccc;
+  margin-bottom: 2px;
+}
+.search__results__itemUL {
+  margin-left: -40px;
+  background-color: antiquewhite;
+  border-radius: 15px;
+}

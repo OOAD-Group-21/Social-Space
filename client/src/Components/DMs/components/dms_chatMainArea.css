@@ -1,0 +1,8 @@
+.dms_chatMainArea {
+  flex: 1;
+  margin: 20px 30px;
+  overflow-y: scroll;
+}
+.dms_chatMainArea::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,30 @@
+.dm__main__message {
+  display: flex;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.dm_message {
+  display: flex;
+  flex-direction: column;
+}
+.dm__message_info {
+  background-color: antiquewhite;
+  border-radius: 15px;
+  max-width: 35vw;
+  padding: 0px 10px;
+}
+.dm_timestamp {
+  font-size: xx-small;
+  position: relative;
+  margin-left: 28%;
+}
+.chat_reciever__dms {
+  margin-left: auto;
+  float: inline-end;
+}
+.chat_reciever_dms > .dmmainmessage > .dm_av {
+  display: none;
+}
+.chat_reciever_dms > .dmmainmessage > .dm_message_info {
+  background-color: antiquewhite;
+}

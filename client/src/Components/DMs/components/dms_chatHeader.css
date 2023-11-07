@@ -1,0 +1,18 @@
+.dms_chatHeader {
+  flex: 0.17;
+  box-shadow: 5px 5px 5px gray;
+  display: flex;
+  height: 12vh;
+}
+.dms__chatHeader_icon {
+  flex: 0.2;
+}
+.dms__chatName {
+  flex: 0.8;
+}
+.dms__chatName > h2 {
+  font-weight: 400;
+  position: relative;
+  top: 50%;
+  transform: translateY(-135%);
+}
