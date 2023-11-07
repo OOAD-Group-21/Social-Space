@@ -19,7 +19,10 @@ function MainAreaLeft({ title, setTitle, setindex, setjoinbox }) {
         <Link to="/createorganisation">
           <button className="twofixedbuttons">Create Organization</button>
         </Link>
-        <button className="twofixedbuttons" onClick={() => setjoinbox((old) => !old)}>
+        <button
+          className="twofixedbuttons"
+          onClick={() => setjoinbox((old) => !old)}
+        >
           Join Organization
         </button>
       </div>

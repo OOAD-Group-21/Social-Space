@@ -25,15 +25,16 @@ function Login() {
           if (response.data.status === "success") {
             navigate("/home");
           }
-        }).catch(err=>(alert(err.response.data.message)));
+        })
+        .catch((err) => alert(err.response.data.message));
     }
   }
   return (
     <div className="app">
-      <img className="loginPage__img1" src={logo} alt="" />
-      <div className="img1__text">
-        <h2 className="logo__top">Social-Space</h2>
-        <p className="logoTop__info">Two worlds One chat</p>
+      <img className="signupPage__img1" src={logo} alt="" />
+      <div className="signupPage__img1Text">
+        <h2>Social-Space</h2>
+        <p>Two worlds One chat</p>
       </div>
 
       <div className="loginArea" id="loginArea" style={{ height: "32vw" }}>
@@ -70,23 +71,30 @@ function Login() {
               Forgot password ?
             </p>
 
-            <button className="register__btn" id="top__btn" onClick={handleFormSubmit}>
+            <button
+              className="register__btn"
+              id="top__btn"
+              onClick={handleFormSubmit}
+            >
               Login
             </button>
           </div>
           <hr id="line" className="line" />
 
-          <Link to="/signup" style={{ textDecoration: "none", color: "#0e1952" }}>
+          <Link
+            to="/signup"
+            style={{ textDecoration: "none", color: "#0e1952" }}
+          >
             <button className="signin" id="bottom__btn">
               Register
             </button>
           </Link>
         </div>
       </div>
-      <img className="loginPage__img2" src={imm} alt="" />
-      <div className="img2__text">
+      <img className="signupPage__img2" src={imm} alt="" />
+      <div className="signupPage__img2Text">
         <p>
-          Made with <FavoriteIcon className="ico" />
+          Made with <FavoriteIcon className="ico" style={{ color: "red" }} />
         </p>
       </div>
     </div>

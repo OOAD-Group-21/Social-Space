@@ -14,24 +14,31 @@ function Signup() {
   const navigate = useNavigate();
 
   function handleFormSubmit() {
-    if (username !== "" && password !== "" && passwordConfirm !== "" && email !== "") {
+    if (
+      username !== "" &&
+      password !== "" &&
+      passwordConfirm !== "" &&
+      email !== ""
+    ) {
       const objData = { username, email, password, passwordConfirm };
-      axios.post("http://localhost:5000/signup", objData).then((response) => {
-        console.log(response);
+      axios
+        .post("http://localhost:5000/signup", objData)
+        .then((response) => {
+          console.log(response);
 
-        if (response.data.status === "success") {
-          console.log("idhar aaya kya");
-          navigate("/home");
-        }
-        else (alert(response.data.message));
-      }).catch(err=>alert(err.response.data.messages[0]));
+          if (response.data.status === "success") {
+            console.log("idhar aaya kya");
+            navigate("/home");
+          } else alert(response.data.message);
+        })
+        .catch((err) => alert(err.response.data.messages[0]));
     }
   }
 
   return (
-    <div className="app">
-      <img className="loginPage__img1" src={logo} alt="" />
-      <div className="img1__text">
+    <div className="signup">
+      <img className="signupPage__img1" src={logo} alt="" />
+      <div className="signupPage__img1Text">
         <h2>Social-Space</h2>
         <p>Two worlds One chat</p>
       </div>
@@ -82,7 +89,11 @@ function Signup() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
-            <button className="register__btn" id="top__btn" onClick={handleFormSubmit}>
+            <button
+              className="register__btn"
+              id="top__btn"
+              onClick={handleFormSubmit}
+            >
               Register
             </button>
           </div>
@@ -90,17 +101,20 @@ function Signup() {
           <p className="registered" id="registered">
             Already have an account ?
           </p>
-          <Link to="/login" style={{ textDecoration: "none", color: "#0e1952" }}>
+          <Link
+            to="/login"
+            style={{ textDecoration: "none", color: "#0e1952" }}
+          >
             <button className="signin" id="bottom__btn">
               Login
             </button>
           </Link>
         </div>
       </div>
-      <img className="loginPage__img2" src={imm} alt="" />
-      <div className="img2__text">
+      <img className="signupPage__img2" src={imm} alt="" />
+      <div className="signupPage__img2Text">
         <p>
-          Made with <FavoriteIcon className="ico" />
+          Made with <FavoriteIcon className="ico" style={{ color: "red" }} />
         </p>
       </div>
     </div>

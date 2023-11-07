@@ -31,9 +31,9 @@ function Dms_ChatsList({ setActiveDM, username }) {
   function handleQueryChange(e) {
     setQuery(e.target.value);
     let newArr = [];
-    if(e.target.value!=""){
-    const regex = new RegExp(`^${e.target.value.toLowerCase()}`);
-    newArr = users.filter((item) => regex.test(item.toLowerCase()));
+    if (e.target.value != "") {
+      const regex = new RegExp(`^${e.target.value.toLowerCase()}`);
+      newArr = users.filter((item) => regex.test(item.toLowerCase()));
     }
     setResults(newArr);
   }
@@ -50,7 +50,11 @@ function Dms_ChatsList({ setActiveDM, username }) {
       <div className="dms__chatsSearch">
         <div className="dms__searchField">
           <SearchIcon style={{ padding: "12px 12px" }} />
-          <input className="dms__seachInput" placeholder="Search..." onChange={(e) => handleQueryChange(e)} />
+          <input
+            className="dms__seachInput"
+            placeholder="Search..."
+            onChange={(e) => handleQueryChange(e)}
+          />
         </div>
         <Search__results results={results} setActiveDM={setActiveDM} />
       </div>
@@ -58,7 +62,10 @@ function Dms_ChatsList({ setActiveDM, username }) {
         {dmList.map((ele) => {
           console.log(ele);
           return (
-            <button onClick={() => setActiveDM(ele)}>
+            <button
+              onClick={() => setActiveDM(ele)}
+              style={{ width: "100%", border: "none" }}
+            >
               <Dm__chat dm={ele} />
             </button>
           );

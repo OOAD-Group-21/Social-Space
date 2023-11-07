@@ -1,30 +1,42 @@
-.dm__main__message {
+.dm___message {
   display: flex;
-  margin-top: 10px;
-  margin-left: 20px;
+  margin-bottom: 7px;
 }
 .dm_message {
+  margin-left: 24px;
+  background-color: antiquewhite;
+  display: flex;
+  border-radius: 37px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 5px;
+}
+
+.dm__message_info {
+  margin-left: 20px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
-.dm__message_info {
-  background-color: antiquewhite;
-  border-radius: 15px;
-  max-width: 35vw;
-  padding: 0px 10px;
+.dm__message_info > p {
+  max-width: 405px;
+  word-wrap: break-word;
 }
 .dm_timestamp {
-  font-size: xx-small;
-  position: relative;
-  margin-left: 28%;
+  margin-left: 20px;
+  font-size: x-small;
+  padding-right: 18px;
+  padding-top: 24px;
 }
 .chat_reciever__dms {
   margin-left: auto;
-  float: inline-end;
+  margin-right: 24px;
+  background-color: #f2f2f2;
+  display: flex;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 37px;
 }
-.chat_reciever_dms > .dmmainmessage > .dm_av {
-  display: none;
-}
-.chat_reciever_dms > .dmmainmessage > .dm_message_info {
-  background-color: antiquewhite;
+.chat_reciever__dms > .dm_timestamp {
+  padding-right: 18px;
+  padding-top: 53px;
 }

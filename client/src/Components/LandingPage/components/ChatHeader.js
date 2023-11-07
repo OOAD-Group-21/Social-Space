@@ -98,7 +98,10 @@ function Membersbutton({ setcss, css }) {
         </button>
       </>
       <div style={{ minHeight: 120 }}>
-        <div className="collapse collapse-horizontal memberss" id="collapseWidthExample">
+        <div
+          className="collapse collapse-horizontal memberss"
+          id="collapseWidthExample"
+        >
           <div className="box-right">
             <MembersList />
           </div>

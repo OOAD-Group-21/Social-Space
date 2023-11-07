@@ -20,7 +20,11 @@ function Header({ setShowNotiList, showNotiList }) {
     axios.get("http://localhost:5000/users").then((response) => {
       const userArr = response.data.userArr.map((user) => user.username).sort();
 
-      setUsers(userArr.filter((username) => username !== response.data.currentUser.username));
+      setUsers(
+        userArr.filter(
+          (username) => username !== response.data.currentUser.username
+        )
+      );
     });
   }, []);
 
@@ -34,9 +38,9 @@ function Header({ setShowNotiList, showNotiList }) {
   function handleQueryChange(e) {
     setQuery(e.target.value);
     let newArr = [];
-    if(e.target.value!=""){
-    const regex = new RegExp(`^${e.target.value.toLowerCase()}`);
-    newArr = users.filter((item) => regex.test(item.toLowerCase()));
+    if (e.target.value != "") {
+      const regex = new RegExp(`^${e.target.value.toLowerCase()}`);
+      newArr = users.filter((item) => regex.test(item.toLowerCase()));
     }
     setResults(newArr);
   }
@@ -51,18 +55,24 @@ function Header({ setShowNotiList, showNotiList }) {
           console.log(response);
         });
 
-      setNotificationData((list) => list.filter((item) => item !== notification));
+      setNotificationData((list) =>
+        list.filter((item) => item !== notification)
+      );
     } else {
       const data = {
         role: notification.role,
         code: notification.orgCode,
       };
 
-      axios.post("http://localhost:5000/joinOrganisation", data).then((response) => {
-        console.log(response);
-      });
+      axios
+        .post("http://localhost:5000/joinOrganisation", data)
+        .then((response) => {
+          console.log(response);
+        });
 
-      setNotificationData((list) => list.filter((item) => item !== notification));
+      setNotificationData((list) =>
+        list.filter((item) => item !== notification)
+      );
     }
   }
 
@@ -89,7 +99,11 @@ function Header({ setShowNotiList, showNotiList }) {
 
         <div className="header__center">
           <div className="search__box">
-            <input type="text" placeholder="Search" onChange={(e) => handleQueryChange(e)} />
+            <input
+              type="text"
+              placeholder="Search"
+              onChange={(e) => handleQueryChange(e)}
+            />
             <SearchIcon />
             <SearchResults results={results} />
           </div>
@@ -121,7 +135,11 @@ function Header({ setShowNotiList, showNotiList }) {
       </div>
       <div className="notiDropdown" id="dropdownHeaderNoti">
         {showNotiList ? (
-          <Notifications notificationData={notificationData} handleAccept={handleAccept} handleReject={handleReject} />
+          <Notifications
+            notificationData={notificationData}
+            handleAccept={handleAccept}
+            handleReject={handleReject}
+          />
         ) : null}
       </div>
     </>
@@ -169,7 +187,11 @@ function Notifications({ notificationData, handleAccept, handleReject }) {
   return (
     <ul className="listHeader">
       {notificationData.map((notification) => (
-        <Notification notification={notification} handleAccept={handleAccept} handleReject={handleReject} />
+        <Notification
+          notification={notification}
+          handleAccept={handleAccept}
+          handleReject={handleReject}
+        />
       ))}
     </ul>
   );

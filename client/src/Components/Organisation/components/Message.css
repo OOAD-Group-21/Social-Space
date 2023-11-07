@@ -1,5 +1,6 @@
 .message {
   display: flex;
+  margin-bottom: 5px;
 }
 .main__message {
   margin-left: 24px;
