@@ -7,14 +7,14 @@ import { IconButton } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header({ setShowNotiList, showNotiList }) {
   const [query, setQuery] = useState("");
   const [users, setUsers] = useState([]);
   const [notificationData, setNotificationData] = useState([]);
-
   const [results, setResults] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("http://localhost:5000/users").then((response) => {
@@ -98,10 +98,11 @@ function Header({ setShowNotiList, showNotiList }) {
           <IconButton onClick={() => setShowNotiList(!showNotiList)}>
             <NotificationsIcon className="ico" />
           </IconButton>
-          <IconButton>
+          {notificationData.length === 0 ? null : notificationData.length}
+          <IconButton onClick={() => navigate("/updateProfile")}>
             <AccountCircleIcon className="ico drop" />
           </IconButton>
-          <div className="dropdown">
+          {/* <div className="dropdown">
             <div className="item">
               <p>Name</p>
             </div>
@@ -114,7 +115,7 @@ function Header({ setShowNotiList, showNotiList }) {
             <div className="item">
               <p>Change Password</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="notiDropdown" id="dropdownHeaderNoti">

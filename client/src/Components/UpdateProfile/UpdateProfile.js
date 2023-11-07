@@ -28,7 +28,14 @@ function UpdateProfile() {
 
   function handleUpdate() {
     setEnabledFields((old) => !old);
-    console.log(dob);
+    // console.log(dob);
+    if (enabledFields) {
+      const data = { username, email, name, dateofbirth: dob, workingstatus: workingStatus };
+      console.log(data);
+      axios.post("http://localhost:5000/updateMyProfile", data).then((response) => {
+        console.log(response.data);
+      });
+    }
   }
   return (
     <div>
@@ -82,7 +89,6 @@ function RightBox({
           <h3 className="profile__name">Profile</h3>
         </div>
         <div className="input__box">
-          {/* <form className="form__input"> */}
           <div className="job__role fl">
             <label className="jobrole left" htmlFor="jobrole">
               Name
@@ -153,12 +159,10 @@ function RightBox({
               type="text"
               id="married"
               name="married"
-              value=""
               onChange={(e) => setWorkingStatus(e.target.value)}
               disabled={enabledFields ? false : true}
             />
           </div>
-          {/* </form> */}
         </div>
       </div>
     </>

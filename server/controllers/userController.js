@@ -807,7 +807,8 @@ exports.friendList = async (req, res, next) => {
 };
 
 //send friend request
-exports.sendFriendRequest = async (req, res, next) => {
+exports.
+sendFriendRequest = async (req, res, next) => {
   const user = await User.findOne({ username: req.body.username });
   const notif = { isFriendRequest: true, friendOrOrgName: req.user.username };
   const notiflist = user.notifications;

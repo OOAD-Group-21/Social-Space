@@ -16,7 +16,7 @@ router.get("/logout", authController.protect, authController.logout);
 
 // 2) User Profile
 router.get("/viewProfile", authController.protect, userController.viewProfile); //done
-router.patch("/updateMyProfile", authController.protect, userController.updateProfile);
+router.post("/updateMyProfile", authController.protect, userController.updateProfile);
 router.delete("/deleteMyProfile", authController.protect, userController.deleteProfile);
 
 // 3) Direct Messaging

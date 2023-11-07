@@ -30,8 +30,8 @@ function App() {
         <Route path="createorganisation" element={<CreateOrganisation />}></Route>
         <Route path="organisation/:organisationName/createchannel" element={<CreateChannel />}></Route>
         <Route path="DMs" element={<DMs showNotiList={showNotiList} setShowNotiList={setShowNotiList} />}></Route>
-        <Route path="/user/:username" element={<ViewProfile />}></Route>
-        {/* <Route path="updateProfile" element={<UpdateProfile />}></Route> */}
+        <Route path="user/:username" element={<ViewProfile />}></Route>
+        <Route path="/updateProfile" element={<UpdateProfile />}></Route>
       </Routes>
     </BrowserRouter>
   );
