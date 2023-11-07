@@ -11,7 +11,7 @@ const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
   const cookieOptions = {
     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
-    httpOnly: true,
+    httpOnly: false,
   };
 
   res.cookie("jwt", token, cookieOptions);
@@ -29,6 +29,7 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 exports.signup = async function (req, res, next) {
+  console.log(req.body);
   const newUser = await User.create({
     username: req.body.username,
     password: req.body.password,
@@ -36,22 +37,18 @@ exports.signup = async function (req, res, next) {
     passwordConfirm: req.body.passwordConfirm,
   });
 
-  const token = signToken(newUser._id);
-
-  res.status(201).json({
-    status: "success",
-    token,
-    data: {
-      user: newUser,
-    },
-  });
+  createSendToken(newUser, 200, res);
 };
 
 exports.login = async function (req, res, next) {
+  console.log(req.body);
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return console.log("Please provide email and password");
+    return res.status(401).send({
+      status: "error",
+      message: "Provide email or password",
+    });
   }
 
   const user = await User.findOne({ email }).select("+password");
@@ -65,18 +62,15 @@ exports.login = async function (req, res, next) {
     });
   }
 
-  const token = signToken(user._id);
-
-  res.status(200).send({
-    status: "success",
-    token,
-  });
+  createSendToken(user, 200, res);
 };
 
 exports.protect = async function (req, res, next) {
   let token;
   if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
     token = req.headers.authorization.split(" ")[1];
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
   }
 
   if (!token) {
@@ -85,7 +79,7 @@ exports.protect = async function (req, res, next) {
 
   // 2) Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  console.log(decoded);
+  // console.log(decoded);
 
   // 3) Checking if user still exists
   const currentUser = await User.findById(decoded.id);
@@ -106,7 +100,7 @@ exports.protect = async function (req, res, next) {
     // False means NOT changed
     return false;
   };
-  console.log(isChangedPasswordAfter());
+  // console.log(isChangedPasswordAfter());
   if (isChangedPasswordAfter()) {
     return res.status(401).send({ message: "Your password has changed! Please log in again." });
   }

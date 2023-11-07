@@ -1,0 +1,124 @@
+.loginArea {
+  display: flex;
+  flex-direction: column;
+  margin-top: 168px;
+  height: 68vh;
+  width: 35vw;
+  border-radius: 66px;
+  background-color: #f2f2f2;
+  box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.25);
+  z-index: 4;
+}
+.loginArea__top {
+  flex: 0.12;
+  border-radius: 84px 84px 0px 0px;
+  background: #0e1952;
+  display: grid;
+  width: 100%;
+  place-items: center;
+}
+.loginPage__img1 {
+  margin-left: -50.7vw;
+  margin-top: -43vw;
+  z-index: 1;
+  position: fixed;
+}
+.img1__text {
+  z-index: 5;
+  margin-left: -68vw;
+  margin-top: -42vw;
+  position: fixed;
+}
+.img1__text > h2 {
+  padding-bottom: 25px;
+  font-size: 64px;
+  color: #0e1952;
+  font-weight: 700;
+}
+.img1__text > p {
+  margin-top: -34px;
+  font-size: 40px;
+  max-width: 223px;
+  font-weight: 600;
+}
+.loginPage__img2 {
+  z-index: 1;
+  margin-bottom: -38vw;
+  margin-left: 69.8vw;
+  position: fixed;
+}
+.img2__text {
+  z-index: 5;
+  margin-right: -81vw;
+  margin-bottom: -39vw;
+  position: fixed;
+}
+.img2__text > p {
+  margin-top: -34px;
+  font-size: 40px;
+  font-weight: 600;
+  max-width: 268px;
+}
+.forget {
+  font-size: 20px;
+  font-weight: 500;
+  padding-left: 5px;
+}
+.logo {
+  color: white;
+  margin: auto;
+}
+.loginArea__bottom {
+  flex: 0.88;
+  display: flex;
+  flex-direction: column;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-top: 25px;
+  width: 90%;
+}
+.fl {
+  flex: 1;
+  padding: 9px;
+}
+.fl > input {
+  border: none;
+  border-radius: 15px;
+  background-color: rgba(217, 217, 217, 0.5);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  height: 3vw;
+  color: gray;
+  font-weight: bold;
+  width: 100%;
+  padding-left: 8px;
+}
+.register__btn {
+  border: none;
+  background-color: #0e1952;
+  color: white;
+  border-radius: 31px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 50%;
+  padding: 11px;
+  margin: auto;
+  font-weight: bold;
+}
+.registered {
+  margin: auto;
+  margin-top: 5px;
+}
+.signin {
+  border: none;
+  margin: auto;
+  margin-top: 3px;
+  border-radius: 50px;
+  background-color: #f2f2f2;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 45%;
+  font-weight: bold;
+  padding: 11px;
+  margin-bottom: 25px;
+}

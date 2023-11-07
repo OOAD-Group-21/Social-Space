@@ -1,15 +1,27 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./Components/Login/Login";
+import Signup from "./Components/Signup/Signup";
+import LandingPage from "./Components/LandingPage/LandingPage";
+import Organisation from "./Components/Organisation/Organisation";
+import CreateOrganisation from "./Components/CreateOrganisation/CreateOrganisation";
+import CreateChannel from "./Components/CreateChannel/CreateChannel";
+import DMs from "./Components/DMs/DMs";
 
 function App() {
-    const [backendData, setBackendData] = useState([{}]);
-
-    useEffect(() => {
-        fetch("/api")
-            .then((response) => response.json())
-            .then((data) => setBackendData(data));
-    }, []);
-    return <div>{typeof backendData.user === "undefined" ? <p>Hi</p> : <p>{backendData.user}</p>}</div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="login" element={<Login />}></Route>
+        <Route path="signup" element={<Signup />}></Route>
+        <Route path="home" element={<LandingPage />}></Route>
+        <Route path="organisation/:organisationName" element={<Organisation />}></Route>
+        <Route path="createorganisation" element={<CreateOrganisation />}></Route>
+        <Route path="organisation/:organisationName/createchannel" element={<CreateChannel />}></Route>
+        <Route path="DMs" element={<DMs />}></Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

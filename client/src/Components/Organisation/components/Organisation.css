@@ -1,0 +1,90 @@
+.organisation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+.organisation2 {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+.organisation__title {
+  display: flex;
+  background-color: #d9d9d9;
+  width: 100%;
+}
+.organisation__info {
+  padding: 5px;
+  align-items: center;
+  justify-content: space-around;
+  flex: 1;
+}
+.organisation__name {
+  flex: 1;
+  padding: 20px 0px;
+}
+.organisation__about {
+  font-size: 11px;
+  display: none;
+}
+.icox {
+  padding: 5px;
+  margin-top: 34px;
+  margin-bottom: 10px;
+}
+.avatar {
+  align-items: center;
+  padding-left: 15px;
+  margin-top: -20px;
+}
+.channel {
+  background-color: #f2f2f2;
+  display: flex;
+  width: 100%;
+}
+.icod {
+  align-self: right;
+  padding: 16px;
+}
+.channel__name {
+  flex: 1;
+  padding-left: 5px;
+}
+.ul {
+  list-style: none;
+  margin: 0%;
+  padding-left: 0;
+}
+.channelbox {
+  height: 40px;
+  left: 0;
+  width: 100%;
+  background-color: #f2f2f2;
+  border: none;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+}
+.btn :hover {
+  background-color: aqua;
+}
+.ul {
+  list-style: none;
+  margin: 0%;
+  padding-left: 0;
+  flex: 1;
+}
+
+.selectedChannel {
+  background-color: #91abde;
+}
+.box {
+  height: 300px;
+  overflow-y: scroll;
+  width: 100%;
+}
+.box::-webkit-scrollbar {
+  display: none;
+}
+.icoz {
+  margin-top: 0px;
+}

@@ -1,0 +1,68 @@
+.organisation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.organisation__title {
+  display: flex;
+  background-color: #d9d9d9;
+}
+.organisation__info {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+.organisation__about {
+  font-size: 11px;
+}
+.icoi {
+  padding: 5px;
+  margin-top: 34px;
+}
+.avatar {
+  align-items: center;
+  padding-left: 15px;
+}
+.channel {
+  background-color: #f2f2f2;
+  display: flex;
+  width: 100%;
+}
+.icod {
+  align-self: right;
+  padding: 16px;
+}
+.channel__name {
+  flex: 1;
+  padding-left: 5px;
+}
+.ul {
+  list-style: none;
+  margin: 0%;
+  padding-left: 0;
+}
+.channelbox {
+  height: 40px;
+  left: 0;
+  width: 100%;
+  background-color: #F2F2F2;
+  border: none;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+}
+.btn :hover{
+background-color: aqua;
+}
+.ul {
+  list-style: none;
+  margin: 0%;
+  padding-left: 0;
+}
+
+.selectedChannel {
+  background-color: #91ABDE;
+}
+.box{
+  height: 300px;
+  overflow-y: scroll;
+  width: 100%;
+}
