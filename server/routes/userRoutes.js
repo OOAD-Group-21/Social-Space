@@ -21,7 +21,7 @@ router.delete("/deleteMyProfile", authController.protect, userController.deleteP
 
 // 3) Direct Messaging
 router.post("/sendMessage", authController.protect, dmController.sendMessage);
-router.post("/search", authController.protect, userController.searchUser);
+router.get("/search/:username", authController.protect, userController.searchUser);
 
 // router.get("/user/:username", authController.protect, dmController.getFriend); // Gets friends old messages
 router.get("/user/:username", authController.protect, dmController.getFriend); // Gets friends old messages
@@ -64,7 +64,7 @@ router.post("/deletechannel", authController.protect, userController.deleteChann
 
 router.post("/changeRole", authController.protect, userController.changeRole); //done
 router.post("/addfriends", authController.protect, userController.addfriend); //done
-router.post("/searchuser", authController.protect, userController.searchUser); //done
+// router.post("/searchuser", authController.protect, userController.searchUser); //done
 router.post("/searchFriend", authController.protect, userController.searchFriend); //done
 router.post("/organisation/search", authController.protect, userController.searchUserOrg); //done
 router.post("/organisation/channel/search", authController.protect, userController.searchUserChannel); //done

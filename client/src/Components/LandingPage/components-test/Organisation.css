@@ -1,0 +1,99 @@
+.landingPage__mainAreaLeft__organisation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.organisation2 {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+.landingPage__mainAreaLeft__organisationTitle {
+  display: flex;
+  background-color: #d9d9d9;
+  width: 100%;
+}
+.landingPage__mainAreaLeft__organisationInfo {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 100%;
+}
+.landingPage__mainAreaLeft__organisationName {
+  width: 100%;
+  text-align: center;
+}
+.landingPage__mainAreaLeft__organisationBox {
+  max-height: 60vh;
+  overflow-y: scroll;
+  width: 100%;
+}
+.landingPage__mainAreaLeft__organisationBox::-webkit-scrollbar {
+  display: none;
+}
+.organisation__about {
+  font-size: 11px;
+}
+.icoi {
+  padding: 5px;
+  margin-top: 34px;
+}
+.avatar {
+  align-items: center;
+  padding-left: 15px;
+}
+.channel {
+  background-color: #f2f2f2;
+  display: flex;
+  width: 100%;
+}
+.icod {
+  align-self: right;
+  padding: 16px;
+}
+.channel__name {
+  flex: 1;
+  padding-left: 5px;
+}
+.landingPage__mainAreaLeft__channelList {
+  list-style-type: none;
+  margin: 0%;
+  padding-left: 0;
+}
+.landingPage__mainAreaLeft__channelListItem {
+  height: 40px;
+  left: 0;
+  width: 100%;
+  background-color: #f2f2f2;
+  border: none;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
+}
+.landingPage__mainAreaLeft__channelList__nonSelected {
+  background-color: #caf0f8;
+  border-radius: 23px;
+  width: 90%;
+  margin: 3px 9px;
+}
+.landingPage__mainAreaLeft__channelList__nonSelected :hover {
+  background-color: #0096c7;
+  border-radius: 23px;
+  padding: 12px 0px;
+  color: white;
+}
+.ul {
+  list-style: none;
+  margin: 0%;
+  padding-left: 0;
+}
+
+.landingPage__mainAreaLeft__channelList__selectedChannel {
+  background-color: #caf0f8;
+  border-radius: 23px;
+  width: 90%;
+  margin: 3px 9px;
+}
+/* .box {
+  height: 300px;
+  overflow-y: scroll;
+  width: 100%;
+} */

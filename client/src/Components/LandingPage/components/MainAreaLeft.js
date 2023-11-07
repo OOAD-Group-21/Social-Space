@@ -8,7 +8,7 @@ function MainAreaLeft({ title, setTitle, setindex, setjoinbox }) {
     <div className="landingPage__mainAreaLeft">
       <div className="dms-org">
         <div className="deff">
-          <button className="org-dm-button">organizaion</button>
+          <button className="org-dm-button">Organisation</button>
         </div>
         <MyButton />
       </div>
@@ -17,10 +17,10 @@ function MainAreaLeft({ title, setTitle, setindex, setjoinbox }) {
       </div>
       <div className="landingpage_left_buttons">
         <Link to="/createorganisation">
-          <button className="twofixedbuttons">create organization</button>
+          <button className="twofixedbuttons">Create Organization</button>
         </Link>
         <button className="twofixedbuttons" onClick={() => setjoinbox((old) => !old)}>
-          join organization
+          Join Organization
         </button>
       </div>
     </div>
@@ -30,8 +30,8 @@ function MainAreaLeft({ title, setTitle, setindex, setjoinbox }) {
 function MyButton() {
   return (
     <div className="deff">
-      <Link to="/DMs">
-        <button className="org-dm-button">DMs</button>
+      <Link to="/DMs" style={{ width: "90%" }}>
+        <button className="org-dm-button dms_btn">DMs</button>
       </Link>
     </div>
   );

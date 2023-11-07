@@ -1,5 +1,6 @@
-.message {
+.chatMessage {
   display: flex;
+  margin-bottom: 7px;
 }
 .main__message {
   margin-left: 24px;
@@ -14,19 +15,19 @@
   margin-left: 20px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .message__timestamp {
   margin-left: 20px;
   font-size: x-small;
+  padding-right: 18px;
+  padding-top: 24px;
 }
 .icoed {
   padding-left: 19px;
   padding-top: 22px;
-}
-.message__timestamp {
-  padding-right: 18px;
-  padding-top: 24px;
 }
 .message__info > h4 {
   max-height: 1px;

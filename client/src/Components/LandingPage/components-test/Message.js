@@ -4,7 +4,7 @@ import { Avatar } from "@mui/material";
 
 function Message({ isTrue, message }) {
   return (
-    <div className="message">
+    <div className="chatMessage">
       <div className={`main__message ${isTrue && "chat__reciever"}`}>
         <div className="icoed">
           <Avatar className="" />

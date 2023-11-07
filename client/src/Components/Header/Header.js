@@ -7,13 +7,13 @@ import { IconButton } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Header({ setShowNotiList, showNotiList }) {
   const [query, setQuery] = useState("");
   const [users, setUsers] = useState([]);
   const [notificationData, setNotificationData] = useState([]);
-  const navigate = useNavigate();
+
   const [results, setResults] = useState([]);
 
   useEffect(() => {
@@ -42,9 +42,13 @@ function Header({ setShowNotiList, showNotiList }) {
 
   function handleAccept(notification) {
     if (notification.isFriendRequest) {
-      axios.post("http://localhost:5000/addfriends", { username: notification.friendOrOrgName }).then((response) => {
-        console.log(response);
-      });
+      axios
+        .post("http://localhost:5000/addfriends", {
+          username: notification.friendOrOrgName,
+        })
+        .then((response) => {
+          console.log(response);
+        });
 
       setNotificationData((list) => list.filter((item) => item !== notification));
     } else {
@@ -63,9 +67,14 @@ function Header({ setShowNotiList, showNotiList }) {
 
   function handleReject(notification) {
     const { friendOrOrgName, orgCode } = notification;
-    axios.post("http://localhost:5000/deleteNotification", { friendOrOrgName, orgCode }).then((response) => {
-      console.log(response);
-    });
+    axios
+      .post("http://localhost:5000/deleteNotification", {
+        friendOrOrgName,
+        orgCode,
+      })
+      .then((response) => {
+        console.log(response);
+      });
 
     setNotificationData((list) => list.filter((item) => item !== notification));
   }
@@ -89,10 +98,10 @@ function Header({ setShowNotiList, showNotiList }) {
           <IconButton onClick={() => setShowNotiList(!showNotiList)}>
             <NotificationsIcon className="ico" />
           </IconButton>
-          <IconButton onClick={() => navigate("/updateprofile")}>
+          <IconButton>
             <AccountCircleIcon className="ico drop" />
           </IconButton>
-          {/* <div className="dropdown">
+          <div className="dropdown">
             <div className="item">
               <p>Name</p>
             </div>
@@ -105,7 +114,7 @@ function Header({ setShowNotiList, showNotiList }) {
             <div className="item">
               <p>Change Password</p>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
       <div className="notiDropdown" id="dropdownHeaderNoti">
@@ -119,7 +128,19 @@ function Header({ setShowNotiList, showNotiList }) {
 
 function SearchResults({ results }) {
   return (
-    <div className="newChannelsearch__results">
+    <div
+      className="newChannelsearch__results"
+      style={{
+        display: "flex",
+        "flex-direction": "column",
+        "margin-left": "0px",
+        position: "fixed",
+        top: "0",
+        "margin-top": "43px",
+        "background-color": "#0077b6",
+        width: "77vh",
+      }}
+    >
       <ul className="newChannelsearchResults__list" id="userSearch">
         {results.map((ele) => (
           <User user={ele} />
@@ -132,10 +153,12 @@ function SearchResults({ results }) {
 function User({ user }) {
   return (
     <li className="newChannel__ResultItem">
-      <div className="newChannelSearchitem">
-        <AccountCircleIcon className="icom" />
-        <p className="newChannel__searchitemName">{user}</p>
-      </div>
+      <Link to={`/user/${user}`}>
+        <div className="newChannelSearchitem">
+          <AccountCircleIcon className="icom" />
+          <p className="newChannel__searchitemName">{user}</p>
+        </div>
+      </Link>
     </li>
   );
 }
@@ -163,6 +186,11 @@ function Notification({ notification, handleAccept, handleReject }) {
         onClick={() => {
           handleAccept(notification);
         }}
+        style={{
+          "background-color": "green",
+          color: "white",
+          "border-radius": "12px",
+        }}
       >
         <DoneIcon />
       </IconButton>
@@ -171,6 +199,11 @@ function Notification({ notification, handleAccept, handleReject }) {
         className="landingPage__reject__btn"
         onClick={() => {
           handleReject(notification);
+        }}
+        style={{
+          "background-color": "red",
+          color: "white",
+          "border-radius": "12px",
         }}
       >
         <CloseIcon />

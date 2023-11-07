@@ -46,7 +46,10 @@ exports.deleteProfile = async (req, res, next) => {
 };
 
 exports.searchUser = async (req, res, next) => {
-  const user = await User.find({ username: req.body.username });
+  console.log(req.params.username);
+  // console.log("req.params.username");
+  const user = await User.findOne({ username: req.params.username });
+  // console.log(user);
 
   if (!user) {
     res.status(404).json({
@@ -58,6 +61,7 @@ exports.searchUser = async (req, res, next) => {
       status: "success",
       data: {
         user,
+        currentUser: req.user,
       },
     });
   }
@@ -704,23 +708,23 @@ exports.global = async (req, res, next) => {
 };
 
 //general search
-exports.searchUser = async (req, res, next) => {
-  const user = await User.aggregate([{ $match: { username: { $regex: "^" + req.body.username } } }, { $limit: 10 }]);
+// exports.searchUser = async (req, res, next) => {
+//   const user = await User.aggregate([{ $match: { username: { $regex: "^" + req.body.username } } }, { $limit: 10 }]);
 
-  if (!user) {
-    res.status(404).json({
-      status: "error",
-      message: "No Users found",
-    });
-  } else {
-    res.status(200).json({
-      status: "success",
-      data: {
-        user,
-      },
-    });
-  }
-};
+//   if (!user) {
+//     res.status(404).json({
+//       status: "error",
+//       message: "No Users found",
+//     });
+//   } else {
+//     res.status(200).json({
+//       status: "success",
+//       data: {
+//         user,
+//       },
+//     });
+//   }
+// };
 
 //search friend
 exports.searchFriend = async (req, res, next) => {

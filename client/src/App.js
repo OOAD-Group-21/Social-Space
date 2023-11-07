@@ -8,7 +8,8 @@ import Organisation from "./Components/Organisation/Organisation";
 import CreateOrganisation from "./Components/CreateOrganisation/CreateOrganisation";
 import CreateChannel from "./Components/CreateChannel/CreateChannel";
 import DMs from "./Components/DMs/DMs";
-// import UpdateProfile from "./Components/UpdateProfile/UpdateProfile";
+import UpdateProfile from "./Components/UpdateProfile/UpdateProfile";
+import ViewProfile from "./Components/ViewProfile/ViewProfile";
 
 function App() {
   const [showNotiList, setShowNotiList] = useState(false);
@@ -29,6 +30,7 @@ function App() {
         <Route path="createorganisation" element={<CreateOrganisation />}></Route>
         <Route path="organisation/:organisationName/createchannel" element={<CreateChannel />}></Route>
         <Route path="DMs" element={<DMs showNotiList={showNotiList} setShowNotiList={setShowNotiList} />}></Route>
+        <Route path="/user/:username" element={<ViewProfile />}></Route>
         {/* <Route path="updateProfile" element={<UpdateProfile />}></Route> */}
       </Routes>
     </BrowserRouter>

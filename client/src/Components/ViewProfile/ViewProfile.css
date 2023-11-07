@@ -1,0 +1,59 @@
+.userProfile {
+  display: grid;
+  height: 100vh;
+  place-items: center;
+}
+.userProfile__Box {
+  display: flex;
+  min-width: 53vw;
+  min-height: fit-content;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px lightgrey;
+}
+.userProfile__boxLeft {
+  flex: 0.3;
+  background-color: orange;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.userProfile__boxRight {
+  flex: 0.7;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.userProfile__boxLeftMain {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.userProfile__boxLeftMain > h3 {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.userProfile__rightInfo {
+  margin: 34px 40px;
+  height: 80%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+.userProfile__rightInfo > h2 {
+  border-bottom: 1px solid #f2f2f2;
+}
+.userProfile__rightEmail {
+  display: flex;
+}
+.userProfile__title {
+  flex: 1;
+}
+.userProfile__titleInfo {
+  color: gray;
+  margin-top: 17px;
+  width: 11vw;
+}
