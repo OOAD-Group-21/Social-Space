@@ -157,7 +157,7 @@ function SearchResults({ results }) {
         position: "fixed",
         top: "0",
         "margin-top": "43px",
-        "background-color": "#0077b6",
+        "background-color": "#caf0f8",
         width: "77vh",
       }}
     >
@@ -173,7 +173,11 @@ function SearchResults({ results }) {
 function User({ user }) {
   return (
     <li className="newChannel__ResultItem">
-      <Link to={`/user/${user}`}>
+      <Link
+        to={`/user/${user}`}
+        style={{ textDecoration: "none" }}
+        className="headerPage_Anchor"
+      >
         <div className="newChannelSearchitem">
           <AccountCircleIcon className="icom" />
           <p className="newChannel__searchitemName">{user}</p>

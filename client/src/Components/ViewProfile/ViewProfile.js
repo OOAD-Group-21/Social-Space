@@ -26,7 +26,7 @@ function ViewProfile() {
   }, [params]);
 
   function handleAddFriend(username) {
-    axios.post("http://localhost:5000/sendFriendRequest", { username }).then((response) => console.log(response));
+    axios.post("http://localhost:5000/sendFriendRequest", { username }).then((response) => console.log(response),alert("Friend Request Sent"));
   }
 
   return (

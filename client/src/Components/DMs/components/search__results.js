@@ -8,7 +8,10 @@ function search__results({ results, setActiveDM }) {
       <ul className="search__results__listUL">
         {results.map((ele) => (
           <li className="search__results__itemUL">
-            <button onClick={() => setActiveDM(ele)}>
+            <button
+              onClick={() => setActiveDM(ele)}
+              style={{ width: "100%", "padding-left": "41px", border: "none" }}
+            >
               <div className="ULresult__item">
                 <Avatar style={{ margin: "14px 10px" }} />
                 <h4>{ele}</h4>

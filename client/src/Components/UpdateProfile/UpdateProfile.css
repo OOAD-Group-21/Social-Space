@@ -2,7 +2,7 @@
   margin-top: 30px;
   color: #000;
   font-family: Inter;
-  font-size: 40px;
+  font-size: 170px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -41,9 +41,10 @@
   color: white;
 }
 
-.flx-container {
+.flx-container-1 {
   display: flex;
   justify-content: center;
+  flex-direction: row;
 }
 .Avatar {
   margin-top: 10px;
@@ -135,9 +136,9 @@
   display: contents;
 }
 
-/* body {
+body {
   background-color: #91abde;
-} */
+}
 .big__box {
   border-radius: 50px;
   width: 860px;

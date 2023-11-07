@@ -21,17 +21,19 @@ function Sidebar() {
           }}
         />
       </Link>
-      <PersonIcon
-        className="dm__sidebar__icon"
-        style={{
-          width: "100%",
-          color: "white",
-          height: "5vh",
-          margin: "10px 0px",
-          paddingBottom: "10px",
-          borderBottom: "1px solid white",
-        }}
-      />
+      <Link to="/updateProfile">
+        <PersonIcon
+          className="dm__sidebar__icon"
+          style={{
+            width: "100%",
+            color: "white",
+            height: "5vh",
+            margin: "10px 0px",
+            paddingBottom: "10px",
+            borderBottom: "1px solid white",
+          }}
+        />
+      </Link>
       <MessageIcon
         className="dm__sidebar__icon"
         style={{

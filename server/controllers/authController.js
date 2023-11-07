@@ -63,7 +63,7 @@ exports.signup = async function (req, res, next) {
     const errorMessages = [];
     if (err.name === 'ValidationError') {
       for (const field in err.errors) {
-        if(err.errors[field].message.contains("E11000 duplicate key error collection")) errorMessages.push("Username or Email already Taken");
+        if(err.errors[field].message.includes("E11000 duplicate key error collection")) errorMessages.push("Username or Email already Taken");
         else errorMessages.push(err.errors[field].message);
       }
     } else {

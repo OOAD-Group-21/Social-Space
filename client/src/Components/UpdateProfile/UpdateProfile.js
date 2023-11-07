@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./UpdateProfile.css";
+// import "./UpdateProfile.css";
 import "./New.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -28,19 +28,28 @@ function UpdateProfile() {
 
   function handleUpdate() {
     setEnabledFields((old) => !old);
-    // console.log(dob);
     if (enabledFields) {
-      const data = { username, email, name, dateofbirth: dob, workingstatus: workingStatus };
+      const data = {
+        username,
+        email,
+        name,
+        dateofbirth: dob,
+        workingstatus: workingStatus,
+      };
       console.log(data);
-      axios.post("http://localhost:5000/updateMyProfile", data).then((response) => {
-        console.log(response.data);
-      });
+      axios
+        .post("http://localhost:5000/updateMyProfile", data)
+        .then((response) => {
+          console.log(response.data);
+        });
     }
+    // console.log(dob);
   }
   return (
-    <div>
+    <div className="body_123">
+      <div className="fntsize">Social-Space</div>
       <h2 className="head">Your Profile</h2>
-      <div className="flx-container">
+      <div className="flx-container-1 f2c2">
         <LeftBox
           userData={userData}
           enabledFields={enabledFields}
@@ -89,6 +98,7 @@ function RightBox({
           <h3 className="profile__name">Profile</h3>
         </div>
         <div className="input__box">
+          {/* <form className="form__input"> */}
           <div className="job__role fl">
             <label className="jobrole left" htmlFor="jobrole">
               Name
@@ -163,6 +173,7 @@ function RightBox({
               disabled={enabledFields ? false : true}
             />
           </div>
+          {/* </form> */}
         </div>
       </div>
     </>
@@ -184,8 +195,8 @@ function LeftBox({ userData, setEnabledFields, enabledFields, handleUpdate }) {
   }
 
   return (
-    <div class="card">
-      <div class="banner"></div>
+    <div class="card__123">
+      <div class="banner_123"></div>
       {/* <div class="menu">
         <div class="opener">
           <span></span>
@@ -193,9 +204,9 @@ function LeftBox({ userData, setEnabledFields, enabledFields, handleUpdate }) {
           <span></span>
         </div>
       </div> */}
-      <h2 class="name">{userData.username}</h2>
-      <div class="actions">
-        <div class="follow-info">
+      <h2 class="name_123">{userData.username}</h2>
+      <div class="actions_123">
+        <div class="follow-info_123 flexaddkarnahai">
           <h2>
             <a href="#">
               {console.log(userData)}
@@ -210,17 +221,23 @@ function LeftBox({ userData, setEnabledFields, enabledFields, handleUpdate }) {
             </a>
           </h2>
         </div>
-        <div class="follow-btn">
-          <button onClick={() => handleUpdate()}>{enabledFields ? "Save Changes" : "Update Profile"}</button>
-        </div>
+        <div className="buttons-logout">
+          <div class="follow-btn_123 button-marginchange">
+            <button onClick={() => handleUpdate()}>
+              {enabledFields ? "Save Changes" : "Update Profile"}
+            </button>
+          </div>
 
-        <div class="follow-btn logout">
-          <button onClick={() => handleLogoutButton()}>{enabledFields ? "Cancel" : "Logout"}</button>
+          <div class="follow-btn_123 logout_123 button-marginchange">
+            <button onClick={() => handleLogoutButton()}>
+              {enabledFields ? "Cancel" : "Logout"}
+            </button>
+          </div>
         </div>
       </div>
-      <div class="desc">
+      {/* <div class="desc_123">
         Morgan has collected ants since they were six years old and now has many dozen ants but none in their pants.
-      </div>
+      </div> */}
     </div>
   );
 }
