@@ -51,23 +51,27 @@ exports.signup = async function (req, res, next) {
       passwordConfirm: req.body.passwordConfirm,
     });
 
-    const token = signToken(newUser._id);
-    res.status(201).json({
-      status: "success",
-      token,
-      data: {
-        user: newUser,
-      },
-    });
+    // const token = signToken(newUser._id);
+    // res.status(201).json({
+    //   status: "success",
+    //   token,
+    //   data: {
+    //     user: newUser,
+    //   },
+    // });
+
+    createSendToken(newUser, 200, res);
   } catch (err) {
     const errorMessages = [];
-    if (err.name === 'ValidationError') {
+    if (err.name === "ValidationError") {
       for (const field in err.errors) {
-        if(err.errors[field].message.includes("E11000 duplicate key error collection")) errorMessages.push("Username or Email already Taken");
+        if (err.errors[field].message.includes("E11000 duplicate key error collection"))
+          errorMessages.push("Username or Email already Taken");
         else errorMessages.push(err.errors[field].message);
       }
     } else {
-      if(err.message.includes("E11000 duplicate key error collection")) errorMessages.push("Username or Email already Taken");
+      if (err.message.includes("E11000 duplicate key error collection"))
+        errorMessages.push("Username or Email already Taken");
       else errorMessages.push(err.message);
     }
 
