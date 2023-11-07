@@ -29,15 +29,53 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 exports.signup = async function (req, res, next) {
-  console.log(req.body);
-  const newUser = await User.create({
-    username: req.body.username,
-    password: req.body.password,
-    email: req.body.email,
-    passwordConfirm: req.body.passwordConfirm,
-  });
+  try {
+    if (!req.body.username) {
+      throw new Error("Username not provided");
+    } else if (!req.body.password) {
+      throw new Error("Password not provided");
+    } else if (!req.body.email) {
+      throw new Error("Email not provided");
+    }
 
-  createSendToken(newUser, 200, res);
+    const userExists = await User.find({ username: req.body.username });
+
+    if (userExists.length) {
+      throw new Error("Username already taken");
+    }
+
+    const newUser = await User.create({
+      username: req.body.username,
+      password: req.body.password,
+      email: req.body.email,
+      passwordConfirm: req.body.passwordConfirm,
+    });
+
+    const token = signToken(newUser._id);
+    res.status(201).json({
+      status: "success",
+      token,
+      data: {
+        user: newUser,
+      },
+    });
+  } catch (err) {
+    const errorMessages = [];
+    if (err.name === 'ValidationError') {
+      for (const field in err.errors) {
+        if(err.errors[field].message.contains("E11000 duplicate key error collection")) errorMessages.push("Username or Email already Taken");
+        else errorMessages.push(err.errors[field].message);
+      }
+    } else {
+      if(err.message.includes("E11000 duplicate key error collection")) errorMessages.push("Username or Email already Taken");
+      else errorMessages.push(err.message);
+    }
+
+    res.status(401).json({
+      status: "error",
+      messages: errorMessages,
+    });
+  }
 };
 
 exports.login = async function (req, res, next) {

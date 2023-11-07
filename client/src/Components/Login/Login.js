@@ -16,7 +16,6 @@ function Login() {
 
     if (email !== "" && password !== "") {
       const objData = { email, password };
-      console.log("idhar aaya");
       axios
         .post("http://localhost:5000/login", objData, {
           withCredentials: true,
@@ -24,10 +23,9 @@ function Login() {
         .then((response) => {
           console.log(response);
           if (response.data.status === "success") {
-            console.log("idhar aaya kya");
             navigate("/home");
           }
-        });
+        }).catch(err=>(alert(err.response.data.message)));
     }
   }
   return (

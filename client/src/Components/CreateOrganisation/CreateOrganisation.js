@@ -30,11 +30,13 @@ function App() {
 
   function handleQueryChange(e) {
     setSearchQuery(e.target.value);
+    let newArr = [];
+    if(e.target.value!=''){
 
     const regex = new RegExp(`^${e.target.value.toLowerCase()}`);
     setReg(regex);
-    const newArr = leftArr.filter((item) => regex.test(item.toLowerCase()));
-
+    newArr = leftArr.filter((item) => regex.test(item.toLowerCase()));
+    }
     setResults(newArr);
   }
 
@@ -57,7 +59,7 @@ function App() {
       if (response.data.status === "success") {
         navigate("/home");
       }
-    });
+    }).catch(err=>(alert(err.response.data)));
   }
 
   return (

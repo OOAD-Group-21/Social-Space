@@ -11,7 +11,10 @@ function JoinOrg({ setjoinbox }) {
       if (response.data.status === "success") {
         setjoinbox((old) => !old);
       }
-    });
+      else {
+        alert(response.data.message);
+      }
+    }).catch(err=>(alert(err.response.data.message)));
   }
 
   return (

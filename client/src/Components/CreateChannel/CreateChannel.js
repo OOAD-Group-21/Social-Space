@@ -39,11 +39,12 @@ function CreateOrganisation() {
 
   function handleQueryChange(e) {
     setSearchQuery(e.target.value);
-
+    let newArr = [];
+    if(e.target.value!=""){
     const regex = new RegExp(`^${e.target.value.toLowerCase()}`);
     setReg(regex);
-    const newArr = leftArr.filter((item) => regex.test(item.toLowerCase()));
-
+    newArr = leftArr.filter((item) => regex.test(item.toLowerCase()));
+    }
     setResults(newArr);
   }
 
@@ -65,7 +66,7 @@ function CreateOrganisation() {
       if (response.data.status === "success") {
         navigate(`/organisation/${orgName}`);
       }
-    });
+    }).catch(err=>(alert(err.response.data.message)));
   }
 
   return (

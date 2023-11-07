@@ -23,7 +23,8 @@ function Signup() {
           console.log("idhar aaya kya");
           navigate("/home");
         }
-      });
+        else (alert(response.data.message));
+      }).catch(err=>alert(err.response.data.messages[0]));
     }
   }
 

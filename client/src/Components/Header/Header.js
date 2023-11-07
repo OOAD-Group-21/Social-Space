@@ -33,10 +33,11 @@ function Header({ setShowNotiList, showNotiList }) {
 
   function handleQueryChange(e) {
     setQuery(e.target.value);
-
+    let newArr = [];
+    if(e.target.value!=""){
     const regex = new RegExp(`^${e.target.value.toLowerCase()}`);
-    const newArr = users.filter((item) => regex.test(item.toLowerCase()));
-
+    newArr = users.filter((item) => regex.test(item.toLowerCase()));
+    }
     setResults(newArr);
   }
 
