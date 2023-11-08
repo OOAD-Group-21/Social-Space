@@ -157,7 +157,7 @@ function SearchResults({ results }) {
         position: "fixed",
         top: "0",
         "margin-top": "43px",
-        "background-color": "#caf0f8",
+        "background-color": "#0077b6",
         width: "77vh",
       }}
     >
@@ -172,7 +172,7 @@ function SearchResults({ results }) {
 
 function User({ user }) {
   return (
-    <li className="newChannel__ResultItem">
+    <li className="newChannel__ResultItem colooo">
       <Link
         to={`/user/${user}`}
         style={{ textDecoration: "none" }}

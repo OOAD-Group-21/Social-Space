@@ -9,10 +9,9 @@
 }
 .dms__chatName {
   flex: 0.8;
+  display: flex;
+  align-items: center;
 }
 .dms__chatName > h2 {
   font-weight: 400;
-  position: relative;
-  top: 50%;
-  transform: translateY(-135%);
 }

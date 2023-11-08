@@ -45,12 +45,14 @@
   height: 40px;
   left: 0;
   width: 100%;
-  background-color: #0096c7;
+  background-color: #caf0f8;
   border: none;
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25) inset;
 }
-.btn :hover{
-background-color: #0096c7;
+.btn :hover {
+  padding: 11px 0px;
+  background-color: #90e0ef;
+  color: white;
 }
 .ul {
   list-style: none;
@@ -59,9 +61,9 @@ background-color: #0096c7;
 }
 
 .selectedChannel {
-  background-color: #caf0f8;
+  background-color: #0096c7;
 }
-.box{
+.box {
   height: 300px;
   overflow-y: scroll;
   width: 100%;

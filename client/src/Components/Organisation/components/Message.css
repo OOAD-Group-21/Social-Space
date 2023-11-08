@@ -6,8 +6,7 @@
   margin-left: 24px;
   background-color: rgba(255, 255, 255, 0.71);
   display: flex;
-  border-top-right-radius: 37px;
-  border-bottom-right-radius: 37px;
+  border-radius: 37px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -39,12 +38,9 @@
 .chat__reciever {
   margin-left: auto;
   margin-right: 24px;
-  background-color: #cadcff;
+  background-image: linear-gradient(45deg, #90e0ef, transparent);
   display: flex;
-  border-top-left-radius: 37px;
-  border-bottom-left-radius: 37px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
+  border-radius: 37px;
   box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .chat__reciever > .icoed {

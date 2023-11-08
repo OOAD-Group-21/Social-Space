@@ -92,6 +92,12 @@
   width: 90%;
   margin: 3px 9px;
 }
+.landingPage__mainAreaLeft__channelList__selectedChannel:hover {
+  background-color: #0096c7;
+  border-radius: 23px;
+  padding: 12px 0px;
+  color: white;
+}
 /* .box {
   height: 300px;
   overflow-y: scroll;
