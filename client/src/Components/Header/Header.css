@@ -13,6 +13,7 @@
   display: flex;
   align-items: center;
   color: white;
+  cursor: pointer;
 }
 .header__center {
   align-items: center;

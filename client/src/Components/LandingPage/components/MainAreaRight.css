@@ -32,6 +32,9 @@
   max-height: 69vh;
   overflow-y: scroll;
 }
+.landingPage__mainAreachatArea::-webkit-scrollbar {
+  display: none;
+}
 .landingField__chatArea__inputField {
   display: flex;
   align-items: center;
