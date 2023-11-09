@@ -13,11 +13,11 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use((req, res, next) => {
-  console.log(req.cookies);
+  // console.log(req.cookies);
   next();
 });
 const corsOptions = {
-  origin: ["http://localhost:3000", "http://localhost:3001","http://localhost:3002"],
+  origin: ["http://localhost:3000", "http://localhost:3001", "http://localhost:3002"],
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };

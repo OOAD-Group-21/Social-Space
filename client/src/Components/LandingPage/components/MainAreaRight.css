@@ -18,15 +18,22 @@
 }
 .ChatAreaHeader {
   margin: 24px;
-  box-shadow: 2px 2px 2px gray;
+  box-shadow: 0px 5px 5px lightgrey;
   max-height: 78px;
   display: flex;
   flex-direction: row;
+  border-radius: 16px;
+  padding-left: 13px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .landingPage__mainAreachatArea {
   flex: 1;
   max-height: 69vh;
   overflow-y: scroll;
+}
+.landingPage__mainAreachatArea::-webkit-scrollbar {
+  display: none;
 }
 .landingField__chatArea__inputField {
   display: flex;
@@ -34,7 +41,7 @@
   justify-content: space-between;
   border-radius: 15px;
   margin: 20px;
-  border: 1px solid black;
+  box-shadow: 5px 5px 5px lightgrey;
   border-width: medium;
 }
 .landingField__chatArea__inputField > input {

@@ -15,18 +15,13 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log("User connected with :", socket.id);
-
   socket.on("join_room", (data) => {
-    console.log("User:", socket.id, " Joined Room : ", data);
     socket.leave(data.oldChannel);
     socket.join(data.newChannel);
   });
 
   socket.on("send_message", async (data) => {
-    // console.log(data);
     socket.to(data.room).emit("receive_message", data);
-    // socket.emit("receive_message", data);
 
     if (data.type === "DM") {
       let user1, user2;
@@ -39,7 +34,6 @@ io.on("connection", (socket) => {
         user2 = data.user2;
       }
 
-      console.log("User sent : ", user1, user2);
       const dm = (await Dm.find({ user1, user2 }))[0];
 
       dm.messages.push({
@@ -50,7 +44,6 @@ io.on("connection", (socket) => {
 
       await dm.save();
     } else {
-      console.log(data);
       const channelFind = await Channel.findById(data.room);
 
       channelFind.messages.push({

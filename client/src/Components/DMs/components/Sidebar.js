@@ -43,6 +43,7 @@ function Sidebar() {
           margin: "10px 0px",
           paddingBottom: "10px",
           borderBottom: "1px solid white",
+          cursor: "pointer",
         }}
       />
     </div>

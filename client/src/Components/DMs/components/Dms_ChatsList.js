@@ -64,6 +64,7 @@ function Dms_ChatsList({ setActiveDM, username }) {
           return (
             <button
               onClick={() => setActiveDM(ele)}
+              className="btnnnnm"
               style={{ width: "100%", border: "none" }}
             >
               <Dm__chat dm={ele} />

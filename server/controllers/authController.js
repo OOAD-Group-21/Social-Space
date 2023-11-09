@@ -83,7 +83,6 @@ exports.signup = async function (req, res, next) {
 };
 
 exports.login = async function (req, res, next) {
-  console.log(req.body);
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -121,7 +120,6 @@ exports.protect = async function (req, res, next) {
 
   // 2) Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  // console.log(decoded);
 
   // 3) Checking if user still exists
   const currentUser = await User.findById(decoded.id);
@@ -142,7 +140,6 @@ exports.protect = async function (req, res, next) {
     // False means NOT changed
     return false;
   };
-  // console.log(isChangedPasswordAfter());
   if (isChangedPasswordAfter()) {
     return res.status(401).send({ message: "Your password has changed! Please log in again." });
   }

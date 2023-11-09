@@ -1,8 +1,6 @@
 const Global_Post = require("./../models/globalPostModel");
 
 exports.sendPost = async (req, res, next) => {
-  // console.log(req.body);
-
   const data = {
     organisation: req.body.organisation,
     text: req.body.text,
@@ -17,7 +15,6 @@ exports.sendPost = async (req, res, next) => {
     data: { newPost },
   });
 };
-
 
 // Send post
 // fetch post

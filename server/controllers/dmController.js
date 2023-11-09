@@ -49,11 +49,7 @@ exports.getFriend = async (req, res, next) => {
     user2 = req.user.username;
   }
 
-  console.log("user1 :", user1);
-  console.log("user2 :", user2);
   const dm = (await Dm.find({ user1, user2 }))[0];
-
-  console.log(dm);
 
   res.status(200).json({
     status: "success",

@@ -13,6 +13,7 @@
   display: flex;
   align-items: center;
   color: white;
+  cursor: pointer;
 }
 .header__center {
   align-items: center;
@@ -121,7 +122,16 @@
   margin-right: 4vh;
 }
 
-
 .headerPage_Anchor {
-  color: rgb(34, 102, 237);
+}
+.colooo {
+  background-color: #48cae4;
+  color: #023e8a;
+}
+.colooo:hover {
+  background-color: #023e8a;
+  color: white;
+}
+.headerPage_Anchor:hover {
+  color: white;
 }

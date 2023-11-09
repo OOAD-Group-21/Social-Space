@@ -15,9 +15,6 @@ const filterObj = (obj, notAllowedFields) => {
 };
 
 exports.updateProfile = async (req, res, next) => {
-  console.log(req.body);
-  console.log(req.user);
-
   const notAllowedFields = ["role", "password"];
 
   const filteredBody = filterObj(req.body, notAllowedFields);
@@ -46,10 +43,7 @@ exports.deleteProfile = async (req, res, next) => {
 };
 
 exports.searchUser = async (req, res, next) => {
-  console.log(req.params.username);
-  // console.log("req.params.username");
   const user = await User.findOne({ username: req.params.username });
-  // console.log(user);
 
   if (!user) {
     res.status(404).json({
@@ -218,8 +212,6 @@ exports.JoinOrganisation = async (req, res, next) => {
     orgArr.push(organization.organisationName);
     orgObj = { organisations: orgArr };
 
-    console.log(organization);
-
     const generalchannel = await Channel.findOne({
       organisationName: organization.organisationName,
       channelName: "General",
@@ -290,7 +282,7 @@ exports.organisationid = async (req, res, next) => {
     if (!organisation) {
       return res.status(404).json({ message: "organisation not found" });
     }
-    console.log(organisation);
+
     const member = organisation.members.find((member1) => member1.username === req.user.username);
     if (!member) {
       return res.status(401).json({ message: "Not a member of the organization" });
@@ -765,7 +757,6 @@ exports.notifications = async (req, res, next) => {
 // get organisation list
 exports.organisationList = async (req, res, next) => {
   try {
-    // console.log("reached");
     const USER = await User.findOne({ username: req.user.username });
     if (!USER) {
       return res.status(404).json({ message: "User not found" });
@@ -795,7 +786,6 @@ exports.friendList = async (req, res, next) => {
       else dms = (await DM.find({ user2: req.user.username, user1: friendlist[i] }))[0];
 
       if (dms.messages != [] && dms.messages.length !== 0) {
-        // console.log(dms.messages.length);
         data.push(friendlist[i]);
       }
     }
@@ -807,8 +797,7 @@ exports.friendList = async (req, res, next) => {
 };
 
 //send friend request
-exports.
-sendFriendRequest = async (req, res, next) => {
+exports.sendFriendRequest = async (req, res, next) => {
   const user = await User.findOne({ username: req.body.username });
   const notif = { isFriendRequest: true, friendOrOrgName: req.user.username };
   const notiflist = user.notifications;
