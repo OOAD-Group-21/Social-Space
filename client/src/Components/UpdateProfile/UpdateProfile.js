@@ -10,20 +10,29 @@ function UpdateProfile() {
 
   useEffect(() => {
     axios.get("http://localhost:5000/viewProfile").then((response) => {
-      console.log(response.data.data);
+      // console.log(response.data.data);
       setUserData(response.data.data);
       setUsername(response.data.data.username);
       setName(response.data.data.name);
-      setDob(response.data.data.dob);
-      setWorkingStatus(response.data.data.workingStatus);
+      // setDob(response.data.data.dob);
+      // setWorkingStatus(response.data.data.workingStatus);
+      setDob(
+        response.data.data.dateofbirth !== undefined
+          ? new Date(response.data.data.dateofbirth)
+              .toISOString()
+              .substring(0, 10)
+          : ""
+      );
+
+      setWorkingStatus(response.data.data.workingstatus);
       setEmail(response.data.data.email);
     });
   }, []);
 
-  const [username, setUsername] = useState(userData.username);
+  const [username, setUsername] = useState("");
   const [name, setName] = useState(userData.name);
   const [email, setEmail] = useState(userData.email);
-  const [dob, setDob] = useState(userData.dob);
+  const [dob, setDob] = useState("");
   const [workingStatus, setWorkingStatus] = useState(userData.workingStatus);
 
   function handleUpdate() {
@@ -33,14 +42,13 @@ function UpdateProfile() {
         username,
         email,
         name,
-        dateofbirth: dob,
+        dateofbirth: new Date(dob),
         workingstatus: workingStatus,
       };
-      console.log(data);
       axios
         .post("http://localhost:5000/updateMyProfile", data)
         .then((response) => {
-          console.log(response.data);
+          alert("Profile updated");
         });
     }
     // console.log(dob);
@@ -57,7 +65,6 @@ function UpdateProfile() {
           handleUpdate={handleUpdate}
         />
         <RightBox
-          userData={userData}
           enabledFields={enabledFields}
           username={username}
           name={name}
@@ -76,7 +83,6 @@ function UpdateProfile() {
 }
 
 function RightBox({
-  userData,
   enabledFields,
   username,
   name,
@@ -89,8 +95,6 @@ function RightBox({
   setWorkingStatus,
   setName,
 }) {
-  console.log(userData);
-
   return (
     <>
       <div className="big__box">
@@ -98,7 +102,6 @@ function RightBox({
           <h3 className="profile__name">Profile</h3>
         </div>
         <div className="input__box">
-          {/* <form className="form__input"> */}
           <div className="job__role fl">
             <label className="jobrole left" htmlFor="jobrole">
               Name
@@ -169,6 +172,7 @@ function RightBox({
               type="text"
               id="married"
               name="married"
+              value={workingStatus}
               onChange={(e) => setWorkingStatus(e.target.value)}
               disabled={enabledFields ? false : true}
             />
@@ -208,17 +212,12 @@ function LeftBox({ userData, setEnabledFields, enabledFields, handleUpdate }) {
       <div class="actions_123">
         <div class="follow-info_123 flexaddkarnahai">
           <h2>
-            <a href="#">
-              {console.log(userData)}
-              <span>{userData !== "" && userData.friends.length}</span>
-              <small>Friends</small>
-            </a>
+            <span>{userData !== "" && userData.friends.length}</span>
+            <small>Friends</small>
           </h2>
           <h2>
-            <a href="#">
-              <span>{userData !== "" && userData.organisations.length}</span>
-              <small>Organisations</small>
-            </a>
+            <span>{userData !== "" && userData.organisations.length}</span>
+            <small>Organisations</small>
           </h2>
         </div>
         <div className="buttons-logout">
