@@ -14,7 +14,15 @@ function search__results({ results, setActiveDM }) {
             >
               <div className="ULresult__item">
                 <Avatar style={{ margin: "14px 10px" }} />
-                <h4>{ele}</h4>
+                <h4
+                  style={{
+                    flex: "1",
+                    "align-items": "center",
+                    display: "flex",
+                  }}
+                >
+                  {ele}
+                </h4>
               </div>
             </button>
           </li>

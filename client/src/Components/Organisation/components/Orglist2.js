@@ -3,6 +3,7 @@ import "./orglist2.css";
 import { Link } from "react-router-dom";
 import { Avatar, IconButton } from "@mui/material";
 import { ArrowDropDown, Article, Description } from "@mui/icons-material";
+import logoo from "./immmmg.svg";
 
 function Orglist2({ setorgdrop, organisations }) {
   const [activeChannel, setActiveChannel] = useState(-1);
@@ -15,28 +16,34 @@ function Orglist2({ setorgdrop, organisations }) {
     <>
       <div className="organisation__title">
         <div className="avatar">
-          <Avatar className="icox" />
+          <img src={logoo} />
+          {/* <Avatar className="icox" /> */}
         </div>
         <div className="organisation__info">
           <h3 className="organisation__name">Social-Space</h3>
           <p className="organisation__about">
-            Re-defining how people chat and separating their professional and personal lives
+            Re-defining how people chat and separating their professional and
+            personal lives
           </p>
         </div>
         <IconButton onClick={() => setorgdrop((old) => !old)}>
-          <ArrowDropDown className="icox icoz" />
+          <ArrowDropDown className="icox icoz" style={{ color: "white" }} />
         </IconButton>
       </div>
 
       <ul className="ul">
         <li>
           <Link to="/createorganisation">
-            <button className="org-twofixedbuttons">Create new Organization</button>
+            <button className="org-twofixedbuttons">
+              Create new Organization
+            </button>
           </Link>
         </li>
         <li>
           <Link to="/home">
-            <button className="org-twofixedbuttons">Back to Global Post wall</button>
+            <button className="org-twofixedbuttons">
+              Back to Global Post wall
+            </button>
           </Link>
         </li>
         {organisations !== ""
@@ -61,7 +68,11 @@ function Channel({ handleActiveChannel, OrgName, k, activeChannel }) {
     <div>
       <Link to={`/organisation/${OrgName}`}>
         <button
-          className={activeChannel === k ? "channelbox selectedChannel" : "channelbox btn"}
+          className={
+            activeChannel === k
+              ? "channelbox selectedChannel"
+              : "channelbox btn"
+          }
           onClick={() => handleActiveChannel(k, OrgName)}
         >
           <h4 className="channel__name">{OrgName}</h4>

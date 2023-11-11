@@ -11,8 +11,9 @@
 }
 .organisation__title {
   display: flex;
-  background-color: #d9d9d9;
+  background-color: #023e8a;
   width: 100%;
+  color: white;
 }
 .organisation__info {
   padding: 5px;
@@ -34,9 +35,13 @@
   margin-bottom: 10px;
 }
 .avatar {
+  height: 100%;
   align-items: center;
   padding-left: 15px;
-  margin-top: -20px;
+  /* margin-top: -20px; */
+  display: flex;
+  justify-content: center;
+  margin-bottom: -15px;
 }
 .channel {
   background-color: #f2f2f2;
@@ -72,8 +77,12 @@
   margin: 0%;
   padding-left: 0;
   flex: 1;
+  max-height: 30vw;
+  overflow-y: scroll;
 }
-
+.ul::-webkit-scrollbar {
+  display: none;
+}
 .selectedChannel {
   background-color: #91abde;
 }
