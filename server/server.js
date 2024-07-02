@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-dotenv.config({ path: "./config.env" });
+dotenv.config();
 const cors = require("cors");
 
 const server = require("./socket");
@@ -20,8 +20,6 @@ try {
 }
 
 // Socket connection
-
-
 
 // server.use(cors(corsOptions))
 server.listen(port, () => {
