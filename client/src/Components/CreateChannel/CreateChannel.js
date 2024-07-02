@@ -1,11 +1,11 @@
-import "./CreateChannelCSS.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CloseIcon from "@mui/icons-material/Close";
-import { useEffect, useState } from "react";
 import { IconButton } from "@mui/material";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../axiosInstance";
+import "./CreateChannelCSS.css";
 
 function CreateOrganisation() {
   const params = useParams();
@@ -27,7 +27,7 @@ function CreateOrganisation() {
 
   useEffect(() => {
     if (orgName !== "") {
-      axios.get(`http://localhost:5000/organisation/${orgName}`).then((response) => {
+      axiosInstance.get(`/organisation/${orgName}`).then((response) => {
         const arr = response.data.members.map((member) => member.username).sort();
 
         const userArr = arr.filter((member) => member !== response.data.currentUser.username);
@@ -40,10 +40,10 @@ function CreateOrganisation() {
   function handleQueryChange(e) {
     setSearchQuery(e.target.value);
     let newArr = [];
-    if(e.target.value!=""){
-    const regex = new RegExp(`^${e.target.value.toLowerCase()}`);
-    setReg(regex);
-    newArr = leftArr.filter((item) => regex.test(item.toLowerCase()));
+    if (e.target.value != "") {
+      const regex = new RegExp(`^${e.target.value.toLowerCase()}`);
+      setReg(regex);
+      newArr = leftArr.filter((item) => regex.test(item.toLowerCase()));
     }
     setResults(newArr);
   }
@@ -61,12 +61,15 @@ function CreateOrganisation() {
       members: rightArr,
     };
 
-    axios.post("http://localhost:5000/CreateChannel", data).then((response) => {
-      console.log(response.data);
-      if (response.data.status === "success") {
-        navigate(`/organisation/${orgName}`);
-      }
-    }).catch(err=>(alert(err.response.data.message)));
+    axiosInstance
+      .post("/CreateChannel", data)
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.status === "success") {
+          navigate(`/organisation/${orgName}`);
+        }
+      })
+      .catch((err) => alert(err.response.data.message));
   }
 
   return (

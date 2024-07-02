@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import "./Header.css";
-import SearchIcon from "@mui/icons-material/Search";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { IconButton } from "@mui/material";
-import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
-import axios from "axios";
+import DoneIcon from "@mui/icons-material/Done";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import SearchIcon from "@mui/icons-material/Search";
+import { IconButton } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axiosInstance from "../axiosInstance";
+import "./Header.css";
 
 function Header({ setShowNotiList, showNotiList }) {
   const [query, setQuery] = useState("");
@@ -17,7 +17,7 @@ function Header({ setShowNotiList, showNotiList }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:5000/users").then((response) => {
+    axiosInstance.get("/users").then((response) => {
       const userArr = response.data.userArr.map((user) => user.username).sort();
 
       setUsers(userArr.filter((username) => username !== response.data.currentUser.username));
@@ -25,7 +25,7 @@ function Header({ setShowNotiList, showNotiList }) {
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/notification").then((response) => {
+    axiosInstance.get("/notification").then((response) => {
       console.log(response.data);
       setNotificationData(response.data);
     });
@@ -43,8 +43,8 @@ function Header({ setShowNotiList, showNotiList }) {
 
   function handleAccept(notification) {
     if (notification.isFriendRequest) {
-      axios
-        .post("http://localhost:5000/addfriends", {
+      axiosInstance
+        .post("/addfriends", {
           username: notification.friendOrOrgName,
         })
         .then((response) => {
@@ -58,7 +58,7 @@ function Header({ setShowNotiList, showNotiList }) {
         code: notification.orgCode,
       };
 
-      axios.post("http://localhost:5000/joinOrganisation", data).then((response) => {
+      axiosInstance.post("/joinOrganisation", data).then((response) => {
         console.log(response);
       });
 
@@ -68,8 +68,8 @@ function Header({ setShowNotiList, showNotiList }) {
 
   function handleReject(notification) {
     const { friendOrOrgName, orgCode } = notification;
-    axios
-      .post("http://localhost:5000/deleteNotification", {
+    axiosInstance
+      .post("/deleteNotification", {
         friendOrOrgName,
         orgCode,
       })

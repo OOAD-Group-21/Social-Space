@@ -1,14 +1,12 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import "./MainAreaRight.css";
-import ChatHeader from "./ChatHeader";
+import React, { useState } from "react";
 import ChatArea from "./ChatArea";
 import ChatCombined from "./ChatFooter";
-import axios from "axios";
+import ChatHeader from "./ChatHeader";
+import "./MainAreaRight.css";
 
 import io from "socket.io-client";
 
-const socket = io.connect("http://localhost:5000");
+const socket = io.connect(process.env.REACT_PUBLIC_BACKEND_URL);
 
 function MainAreaRight({ title, friend, index, notiList, setNotiList }) {
   const [username, setUsername] = useState("Aryan");

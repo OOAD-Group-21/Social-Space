@@ -1,10 +1,10 @@
-import { useState } from "react";
-import "./Login.css";
-import axios from "axios";
-import logo from "./../../Assets/test.svg";
-import imm from "./../../Assets/img.svg";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axiosInstance from "../axiosInstance";
+import imm from "./../../Assets/img.svg";
+import logo from "./../../Assets/test.svg";
+import "./Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -16,8 +16,8 @@ function Login() {
 
     if (email !== "" && password !== "") {
       const objData = { email, password };
-      axios
-        .post("http://localhost:5000/login", objData, {
+      axiosInstance
+        .post("/login", objData, {
           withCredentials: true,
         })
         .then((response) => {
@@ -71,20 +71,13 @@ function Login() {
               Forgot password ?
             </p>
 
-            <button
-              className="register__btn"
-              id="top__btn"
-              onClick={handleFormSubmit}
-            >
+            <button className="register__btn" id="top__btn" onClick={handleFormSubmit}>
               Login
             </button>
           </div>
           <hr id="line" className="line" />
 
-          <Link
-            to="/signup"
-            style={{ textDecoration: "none", color: "#0e1952" }}
-          >
+          <Link to="/signup" style={{ textDecoration: "none", color: "#0e1952" }}>
             <button className="signin" id="bottom__btn">
               Register
             </button>

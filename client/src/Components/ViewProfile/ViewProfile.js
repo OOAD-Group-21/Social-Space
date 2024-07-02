@@ -1,9 +1,9 @@
-import { Avatar, IconButton } from "@mui/material";
-import "./ViewProfile.css";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import { Avatar, IconButton } from "@mui/material";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import axiosInstance from "../axiosInstance";
+import "./ViewProfile.css";
 
 function ViewProfile() {
   const [userData, setUserData] = useState("");
@@ -13,7 +13,7 @@ function ViewProfile() {
   useEffect(() => {
     const username = params.username;
     if (username !== "")
-      axios.get(`http://localhost:5000/search/${username}`).then((response) => {
+      axiosInstance.get(`/search/${username}`).then((response) => {
         console.log(response.data.data);
         setUserData(response.data.data.user);
 
@@ -26,7 +26,9 @@ function ViewProfile() {
   }, [params]);
 
   function handleAddFriend(username) {
-    axios.post("http://localhost:5000/sendFriendRequest", { username }).then((response) => console.log(response),alert("Friend Request Sent"));
+    axiosInstance
+      .post("/sendFriendRequest", { username })
+      .then((response) => console.log(response), alert("Friend Request Sent"));
   }
 
   return (

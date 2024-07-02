@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import "./UpdateProfile.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axiosInstance";
+import "./UpdateProfile.css";
 
 function UpdateProfile() {
   const [userData, setUserData] = useState("");
   const [enabledFields, setEnabledFields] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/viewProfile").then((response) => {
+    axiosInstance.get("/viewProfile").then((response) => {
       setUserData(response.data.data);
       setUsername(response.data.data.username);
       setName(response.data.data.name);
@@ -39,7 +39,7 @@ function UpdateProfile() {
         dateofbirth: new Date(dob),
         workingstatus: workingStatus,
       };
-      axios.post("http://localhost:5000/updateMyProfile", data).then((response) => {
+      axiosInstance.post("/updateMyProfile", data).then((response) => {
         alert("Profile updated");
       });
     }
@@ -178,7 +178,7 @@ function LeftBox({ userData, setEnabledFields, enabledFields, handleUpdate }) {
   const navigate = useNavigate();
   function handleLogoutButton() {
     if (!enabledFields) {
-      axios.get("http://localhost:5000/logout").then((response) => {
+      axiosInstance.get("/logout").then((response) => {
         if (response.data.status === "success") {
           navigate("/login");
         }
@@ -189,12 +189,12 @@ function LeftBox({ userData, setEnabledFields, enabledFields, handleUpdate }) {
   }
 
   return (
-    <div class="card__123">
-      <div class="banner_123"></div>
+    <div className="card__123">
+      <div className="banner_123"></div>
 
-      <h2 class="name_123">{userData.username}</h2>
-      <div class="actions_123">
-        <div class="follow-info_123 flexaddkarnahai">
+      <h2 className="name_123">{userData.username}</h2>
+      <div className="actions_123">
+        <div className="follow-info_123 flexaddkarnahai">
           <h2>
             <span>{userData !== "" && userData.friends.length}</span>
             <small>Friends</small>
@@ -205,11 +205,11 @@ function LeftBox({ userData, setEnabledFields, enabledFields, handleUpdate }) {
           </h2>
         </div>
         <div className="buttons-logout">
-          <div class="follow-btn_123 button-marginchange">
+          <div className="follow-btn_123 button-marginchange">
             <button onClick={() => handleUpdate()}>{enabledFields ? "Save Changes" : "Update Profile"}</button>
           </div>
 
-          <div class="follow-btn_123 logout_123 button-marginchange">
+          <div className="follow-btn_123 logout_123 button-marginchange">
             <button onClick={() => handleLogoutButton()}>{enabledFields ? "Cancel" : "Logout"}</button>
           </div>
         </div>

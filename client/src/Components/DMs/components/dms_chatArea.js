@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./dms_chatArea.css";
 import Dms_chatHeader from "./dms_chatHeader";
-import Dms_chatMainArea from "./dms_chatMainArea";
 import Dms_chatInput from "./dms_chatInput";
-import axios from "axios";
+import Dms_chatMainArea from "./dms_chatMainArea";
 
 import io from "socket.io-client";
+import axiosInstance from "../../axiosInstance";
 
-const socket = io.connect("http://localhost:5000");
+const socket = io.connect(process.env.REACT_PUBLIC_BACKEND_URL);
 
 function Dms_chatArea({ activeDM, username }) {
   const [room, setRoom] = useState("");
@@ -16,7 +16,7 @@ function Dms_chatArea({ activeDM, username }) {
 
   useEffect(() => {
     if (activeDM !== "") {
-      axios.get(`http://localhost:5000/user/${activeDM}`).then((response) => {
+      axiosInstance.get(`/user/${activeDM}`).then((response) => {
         // console.log(response.data);
         // setUsername(response.data.currentUser);
         // console.log(response.data.currentUser);

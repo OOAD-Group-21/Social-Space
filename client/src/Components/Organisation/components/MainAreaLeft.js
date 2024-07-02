@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axiosInstance from "../../axiosInstance";
 import "./MainAreaLeft.css";
 import Organisation from "./Organisation";
 import Orglist2 from "./Orglist2";
-import axios from "axios";
-import { Link } from "react-router-dom";
 
 function MainAreaLeft({ title, setTitle, organisationData, organisationName }) {
   const [orgDrop, setOrgDrop] = useState(false);
   const [organisations, setOrganisations] = useState("");
   useEffect(() => {
-    axios.get("http://localhost:5000/organisations").then((response) => {
+    axiosInstance.get("/organisations").then((response) => {
       console.log(response.data);
       setOrganisations(response.data);
     });

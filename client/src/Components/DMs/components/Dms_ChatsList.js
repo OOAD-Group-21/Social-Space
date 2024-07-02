@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import "./Dms_ChatsList.css";
 import SearchIcon from "@mui/icons-material/Search";
-import Dm__chat from "./Dm__chat";
-import Search__results from "./search__results";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../axiosInstance";
+import Dm__chat from "./Dm__chat";
+import "./Dms_ChatsList.css";
+import Search__results from "./search__results";
 
 function Dms_ChatsList({ setActiveDM, username }) {
   const [query, setQuery] = useState("");
@@ -15,14 +15,14 @@ function Dms_ChatsList({ setActiveDM, username }) {
   const [dmList, setDmList] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/notification").then((response) => {
+    axiosInstance.get("/notification").then((response) => {
       // console.log(response.data);
       setNotificationData(response.data);
     });
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/viewProfile").then((response) => {
+    axiosInstance.get("/viewProfile").then((response) => {
       console.log(response.data);
       setUsers(response.data.data.friends);
     });
@@ -39,7 +39,7 @@ function Dms_ChatsList({ setActiveDM, username }) {
   }
 
   useEffect(() => {
-    axios.get("http://localhost:5000/dm").then((response) => {
+    axiosInstance.get("/dm").then((response) => {
       console.log(response.data);
       setDmList(response.data);
     });
@@ -50,11 +50,7 @@ function Dms_ChatsList({ setActiveDM, username }) {
       <div className="dms__chatsSearch">
         <div className="dms__searchField">
           <SearchIcon style={{ padding: "12px 12px" }} />
-          <input
-            className="dms__seachInput"
-            placeholder="Search..."
-            onChange={(e) => handleQueryChange(e)}
-          />
+          <input className="dms__seachInput" placeholder="Search..." onChange={(e) => handleQueryChange(e)} />
         </div>
         <Search__results results={results} setActiveDM={setActiveDM} />
       </div>
@@ -62,11 +58,7 @@ function Dms_ChatsList({ setActiveDM, username }) {
         {dmList.map((ele) => {
           console.log(ele);
           return (
-            <button
-              onClick={() => setActiveDM(ele)}
-              className="btnnnnm"
-              style={{ width: "100%", border: "none" }}
-            >
+            <button onClick={() => setActiveDM(ele)} className="btnnnnm" style={{ width: "100%", border: "none" }}>
               <Dm__chat dm={ele} />
             </button>
           );

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./Organisation.css";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import axiosInstance from "../../axiosInstance";
+import "./Organisation.css";
 
 function OrganisationPage({ title, setTitle, setindex }) {
   return (
@@ -18,7 +18,7 @@ function OrganisationsList({ title, setTitle, setindex }) {
   const [organisations, setOrganisations] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/organisations").then((response) => {
+    axiosInstance.get("/organisations").then((response) => {
       console.log(response.data);
       setOrganisations(response.data);
     });

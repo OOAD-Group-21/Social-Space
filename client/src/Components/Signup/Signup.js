@@ -1,10 +1,10 @@
-import { useState } from "react";
-import "./Signup.css";
-import axios from "axios";
-import logo from "./../../Assets/test.svg";
-import imm from "./../../Assets/img.svg";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axiosInstance from "../axiosInstance";
+import imm from "./../../Assets/img.svg";
+import logo from "./../../Assets/test.svg";
+import "./Signup.css";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -14,15 +14,10 @@ function Signup() {
   const navigate = useNavigate();
 
   function handleFormSubmit() {
-    if (
-      username !== "" &&
-      password !== "" &&
-      passwordConfirm !== "" &&
-      email !== ""
-    ) {
+    if (username !== "" && password !== "" && passwordConfirm !== "" && email !== "") {
       const objData = { username, email, password, passwordConfirm };
-      axios
-        .post("http://localhost:5000/signup", objData)
+      axiosInstance
+        .post("/signup", objData)
         .then((response) => {
           console.log(response);
 
@@ -89,11 +84,7 @@ function Signup() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
-            <button
-              className="register__btn"
-              id="top__btn"
-              onClick={handleFormSubmit}
-            >
+            <button className="register__btn" id="top__btn" onClick={handleFormSubmit}>
               Register
             </button>
           </div>
@@ -101,10 +92,7 @@ function Signup() {
           <p className="registered" id="registered">
             Already have an account ?
           </p>
-          <Link
-            to="/login"
-            style={{ textDecoration: "none", color: "#0e1952" }}
-          >
+          <Link to="/login" style={{ textDecoration: "none", color: "#0e1952" }}>
             <button className="signin" id="bottom__btn">
               Login
             </button>

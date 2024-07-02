@@ -1,20 +1,22 @@
 import React, { useState } from "react";
+import axiosInstance from "../../axiosInstance";
 import "./JoinOrg.css";
-import axios from "axios";
 
 function JoinOrg({ setjoinbox }) {
   const [code, setCode] = useState("");
 
   function handleCode() {
-    axios.post("http://localhost:5000/joinOrganisation", { code }).then((response) => {
-      console.log(response);
-      if (response.data.status === "success") {
-        setjoinbox((old) => !old);
-      }
-      else {
-        alert(response.data.message);
-      }
-    }).catch(err=>(alert(err.response.data.message)));
+    axiosInstance
+      .post("/joinOrganisation", { code })
+      .then((response) => {
+        console.log(response);
+        if (response.data.status === "success") {
+          setjoinbox((old) => !old);
+        } else {
+          alert(response.data.message);
+        }
+      })
+      .catch((err) => alert(err.response.data.message));
   }
 
   return (

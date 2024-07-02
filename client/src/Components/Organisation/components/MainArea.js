@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axiosInstance from "../../axiosInstance";
 import "./MainArea.css";
 import MainAreaLeft from "./MainAreaLeft";
 import MainAreaRight from "./MainAreaRight";
-import axios from "axios";
-
-axios.defaults.withCredentials = true;
 
 function MainArea({ organisationName }) {
   const [organisationData, setOrganisationData] = useState("");
@@ -15,8 +13,8 @@ function MainArea({ organisationName }) {
   useEffect(() => {
     if (organisationName !== "") {
       console.log(organisationName);
-      axios
-        .get(`http://localhost:5000/organisation/${organisationName}`)
+      axiosInstance
+        .get(`/organisation/${organisationName}`)
         .then((response) => {
           setOrganisationData(response.data);
         })
@@ -28,7 +26,7 @@ function MainArea({ organisationName }) {
     if (organisationData) {
       console.log(organisationData);
       organisationData.channels.map((channel) => {
-        axios.get(`http://localhost:5000/organisation/${organisationName}/channel/${channel}`).then((response) => {
+        axiosInstance.get(`/organisation/${organisationName}/channel/${channel}`).then((response) => {
           setChannelData((list) => [...list, response.data.channel]);
           setUsername(response.data.currentUser.username);
         });

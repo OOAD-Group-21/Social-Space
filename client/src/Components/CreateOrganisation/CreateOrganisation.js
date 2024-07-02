@@ -1,11 +1,11 @@
-import "./CreateOrganisationCSS.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CloseIcon from "@mui/icons-material/Close";
-import { useEffect, useState } from "react";
 import { IconButton } from "@mui/material";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axiosInstance";
+import "./CreateOrganisationCSS.css";
 
 // NOTES - SEARCH BAR NOT CLOSING ON NO RESULTS
 
@@ -20,7 +20,7 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:5000/users").then((response) => {
+    axiosInstance.get("/users").then((response) => {
       console.log(response.data.userArr);
       const userArr = response.data.userArr.map((user) => user.username).sort();
 
@@ -31,11 +31,10 @@ function App() {
   function handleQueryChange(e) {
     setSearchQuery(e.target.value);
     let newArr = [];
-    if(e.target.value!=''){
-
-    const regex = new RegExp(`^${e.target.value.toLowerCase()}`);
-    setReg(regex);
-    newArr = leftArr.filter((item) => regex.test(item.toLowerCase()));
+    if (e.target.value != "") {
+      const regex = new RegExp(`^${e.target.value.toLowerCase()}`);
+      setReg(regex);
+      newArr = leftArr.filter((item) => regex.test(item.toLowerCase()));
     }
     setResults(newArr);
   }
@@ -54,12 +53,15 @@ function App() {
       memrole: rightArr,
     };
 
-    axios.post("http://localhost:5000/CreateOrganisation", data).then((response) => {
-      console.log(response.data);
-      if (response.data.status === "success") {
-        navigate("/home");
-      }
-    }).catch(err=>(alert(err.response.data)));
+    axiosInstance
+      .post("/CreateOrganisation", data)
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.status === "success") {
+          navigate("/home");
+        }
+      })
+      .catch((err) => alert(err.response.data));
   }
 
   return (
