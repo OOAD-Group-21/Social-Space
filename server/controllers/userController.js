@@ -117,27 +117,27 @@ exports.CreateOrganisation = async (req, res, next) => {
     const orgName = req.body.organisationName;
     const organization = new Organisation({ organisationName: orgName });
     organization.code = result;
-    orgArr = req.user.organisations;
+    const orgArr = req.user.organisations;
     orgArr.push(orgName);
     organization.members.push({ username: req.user.username, role: "admin" });
     for (let i = 0; i < req.body.memrole.length; i++) {
       const userN = req.body.memrole[i].username;
       const role = req.body.memrole[i].role;
       const USER = await User.findOne({ username: userN });
-      updatenotification = USER.notifications;
+      const updatenotification = USER.notifications;
       updatenotification.push({
         isFriendRequest: false,
         friendOrOrgName: orgName,
         role: role,
         orgCode: organization.code,
       });
-      notify = { notifications: updatenotification };
+      const notify = { notifications: updatenotification };
       const updatedUser = await User.findByIdAndUpdate(USER.id, notify, {
         new: true,
       });
     }
     // await organization.save();
-    orgObj = { organisations: orgArr };
+    const orgObj = { organisations: orgArr };
     const updatedUser = await User.findByIdAndUpdate(req.user.id, orgObj, {
       new: true,
     });
@@ -208,9 +208,9 @@ exports.JoinOrganisation = async (req, res, next) => {
       return res.status(400).json({ message: "User is already a member of this organization." });
     }
     organization.members.push({ username: user.username, role: role });
-    orgArr = req.user.organisations;
+    const orgArr = req.user.organisations;
     orgArr.push(organization.organisationName);
-    orgObj = { organisations: orgArr };
+    const orgObj = { organisations: orgArr };
 
     const generalchannel = await Channel.findOne({
       organisationName: organization.organisationName,
@@ -261,9 +261,9 @@ exports.LeaveOrganisation = async (req, res, next) => {
       return res.status(400).json({ message: "User is not a member of this organization" });
     }
     organization.members.splice(memberIndex, 1);
-    orgArr = req.user.organisations;
+    const orgArr = req.user.organisations;
     const filteredOrgArr = orgArr.filter((org) => org !== orgName);
-    orgObj = { organisations: filteredOrgArr };
+    const orgObj = { organisations: filteredOrgArr };
     const updatedUser = await User.findByIdAndUpdate(req.user.id, orgObj, {
       new: true,
     });
@@ -558,7 +558,7 @@ exports.channelid = async (req, res, next) => {
 //search for adding memeber to channel
 exports.searchUserChannel = async (req, res, next) => {
   const channel = await Channel.findOne({ organisationName: req.body.organisation, channelName: req.body.channel });
-  const members = [];
+  let members = [];
   if (channel) members = channel.members;
   const user = await User.aggregate([
     {
@@ -828,8 +828,8 @@ exports.addfriend = async (req, res, next) => {
   const friendlist2 = User2.friends;
   friendlist1.push(User2.username);
   friendlist2.push(User1.username);
-  friend1ob = { friends: friendlist1 };
-  friend2ob = { friends: friendlist2 };
+  const friend1ob = { friends: friendlist1 };
+  const friend2ob = { friends: friendlist2 };
 
   let data;
   if (User1.username < User2.username) {
